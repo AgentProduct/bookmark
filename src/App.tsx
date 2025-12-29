@@ -10,25 +10,9 @@ interface Bookmark {
   bgColor?: string;
 }
 
-// 分类图标映射
-const categoryIcons: Record<string, string> = {
-  all: "📚",
-  视频: "🎬",
-  音乐: "🎵",
-  开发: "💻",
-  工具: "🔧",
-  其他: "📁",
-  资讯: "📰",
-  社区: "💬",
-  环境: "🌍",
-  文档: "📖",
-  AI: "🤖",
-  笔记: "📝",
-};
-
 // 获取分类图标
 const getCategoryIcon = (category: string): string => {
-  return categoryIcons[category] || "📁";
+  return config?.categoryIcons?.[category] || "📁";
 };
 
 /* 书签卡片（保持不变，只微调点击动画时长） */
@@ -107,7 +91,7 @@ function App() {
   const [isAnimating, setIsAnimating] = useState(false);
 
   // 假设你的书签数据
-  const bookmarks: Bookmark[] = bookmarksConfig;
+  const bookmarks: Bookmark[] = config?.bookmarks || [];
 
   const categories = [
     "all",
