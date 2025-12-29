@@ -56,8 +56,10 @@ const BookmarkCard = memo(function BookmarkCard({
               alt={`${title} logo`}
               loading="lazy"
               onError={(e) => {
-                // 当favicon不可用时隐藏图片
-                (e.target as HTMLImageElement).style.display = "none";
+                // 当favicon不可用时使用默认图标
+                (e.target as HTMLImageElement).src =
+                  "/icons/default-favicon.svg";
+                (e.target as HTMLImageElement).style.display = "block";
               }}
             />
             {title}

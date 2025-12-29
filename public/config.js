@@ -31,14 +31,14 @@ const config = {
     },
     {
       id: 5,
-      title: "React 文档",
+      title: "React Docs",
       url: "https://zh-hans.react.dev",
       category: "React",
       icon: "https://zh-hans.react.dev/favicon-32x32.png",
     },
     {
       id: 6,
-      title: "TypeScript 文档",
+      title: "TypeScript Docs",
       url: "https://www.typescriptlang.org",
       category: "文档",
       icon: "https://www.typescriptlang.org/favicon-32x32.png",
@@ -565,7 +565,7 @@ const config = {
     },
     {
       id: 81,
-      title: "Three.js 文档",
+      title: "Three.js Docs",
       url: "https://techbrood.com/threejs/docs/",
       category: "Three.js",
       icon: "https://techbrood.com/favicon.ico",
@@ -590,6 +590,7 @@ const config = {
       url: "https://observablehq.com/top",
       category: "D3",
       icon: "/icons/observablehq-favicon.png",
+      bgColor: "#ffffff",
     },
     {
       id: 85,
@@ -934,6 +935,7 @@ const config = {
       url: "https://pm2.io/docs/plus/overview/",
       category: "工具",
       icon: "https://pm2.io/favicon.ico",
+      bgColor: "#ffffff",
     },
     {
       id: 134,
