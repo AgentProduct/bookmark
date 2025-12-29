@@ -1,0 +1,25 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景渐变 -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+  </defs>
+
+  <!-- 书签主体（带圆角矩形 + 下方三角） -->
+  <path d="M16 8 H48 A8 8 0 0 1 56 16 V56 L32 44 L8 56 V16 A8 8 0 0 1 16 8 Z" 
+        fill="url(#gradient)" 
+        stroke="#a5b4fc" 
+        stroke-width="3" 
+        stroke-linejoin="round"/>
+
+  <!-- 内页高光（增加立体感） -->
+  <path d="M16 16 H48 V36 L32 28 L16 36 Z" 
+        fill="rgba(255,255,255,0.15)" 
+        stroke="none"/>
+
+  <!-- 小星星点缀（表示已收藏） -->
+  <circle cx="44" cy="20" r="4" fill="#fbbf24" opacity="0.9"/>
+  <circle cx="44" cy="20" r="2" fill="#fff" opacity="0.8"/>
+</svg>
