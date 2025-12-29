@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useCallback, memo } from "react";
+import React, { useState, useEffect, useRef,useCallback, memo } from "react";
 import "./App.css";
+import * as d3 from 'd3';
 
 // 声明全局config变量
 declare const config: any;
@@ -277,8 +278,11 @@ const BookmarkCard = memo(function BookmarkCard({
   );
 });
 
-function App() {
-  const [activeCategory, setActiveCategory] = useState("all");
+const App: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState('all');
+  const backgroundRef = useRef<SVGSVGElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null); // 添加内容区域ref
+
   const [compactMode, setCompactMode] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -331,6 +335,84 @@ function App() {
     return () => clearTimeout(timer);
   }, [activeCategory]);
 
+  useEffect(() => {
+    const container = contentRef.current;
+    if (!container) return;
+
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    // 清除现有SVG内容
+    d3.select(backgroundRef.current).selectAll('*').remove();
+    const svg = d3.select(backgroundRef.current)
+      .attr('width', width)
+      .attr('height', height);
+
+    // 创建波浪动画
+    const waveCount = 3;
+    const waves = [];
+    const colors = ['#818cf8', '#4ade80', '#10b981'];
+    const speeds = [0.005, 0.003, 0.007];
+    const amplitudes = [20, 15, 25];
+
+    // 创建波浪路径生成器
+    const createWave = (index) => {
+      const wave = svg.append('path')
+        .attr('fill', 'none')
+        .attr('stroke', colors[index % colors.length])
+        .attr('stroke-width', 2)
+        .attr('opacity', 0.6);
+
+      return {
+        path: wave,
+        speed: speeds[index % speeds.length],
+        amplitude: amplitudes[index % amplitudes.length],
+        offset: Math.random() * 1000
+      };
+    };
+
+    // 初始化波浪
+    for (let i = 0; i < waveCount; i++) {
+      waves.push(createWave(i));
+    }
+
+    // 波浪动画函数
+    const animateWave = () => {
+      waves.forEach((wave, index) => {
+        wave.offset += wave.speed;
+        const pathData = d3.line()
+          .x((d) => d.x)
+          .y((d) => d.y)
+          .curve(d3.curveBasis)(
+            Array.from({length: 100}, (_, i) => ({
+              x: (i / 99) * width,
+              y: height / 2 + Math.sin(i / 10 + wave.offset) * wave.amplitude
+            }))
+          );
+
+        wave.path.attr('d', pathData);
+      });
+
+      requestAnimationFrame(animateWave);
+    };
+
+    animateWave();
+
+    // 监听内容区域尺寸变化
+    const resizeObserver = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        const { width, height } = entry.contentRect || {};
+        svg.attr('width', width).attr('height', height);
+      }
+    });
+
+    resizeObserver.observe(container);
+
+    return () => {
+      resizeObserver.unobserve(container);
+    };
+  }, []);
+
   return (
     <div className="app-container">
       {/* 侧边栏 */}
@@ -368,7 +450,9 @@ function App() {
       </aside>
 
       {/* 主内容区 */}
-      <main className="bookmark-content">
+      <main className="bookmark-content" ref={contentRef}>
+        {/* D3粒子动画 */}
+        <svg ref={backgroundRef} className="content-animation"></svg>
         <div className="content-header">
           <div className="header-left">
             <h1>
@@ -395,7 +479,7 @@ function App() {
               )}
             </div>
           </div>
-
+      
           <button
             className={`compact-toggle ${compactMode ? "active" : ""}`}
             onClick={() => setCompactMode((v) => !v)}
@@ -404,24 +488,22 @@ function App() {
             {compactMode ? "🌐" : "📋"}
           </button>
         </div>
-
-        <div
-          className={`bookmark-grid ${compactMode ? "compact" : ""} ${
-            isAnimating ? "fade-in" : ""
-          }`}
-        >
-          {filteredBookmarks.length > 0 ? (
-            filteredBookmarks.map((b) => <BookmarkCard key={b.id} {...b} />)
-          ) : (
-            <div className="empty-state">该分类下暂无书签</div>
-          )}
-        </div>
+      
+          <div
+            className={`bookmark-grid ${compactMode ? "compact" : ""} ${isAnimating ? "fade-in" : ""}`}
+          >
+            {filteredBookmarks.length > 0 ? (
+              filteredBookmarks.map((b) => <BookmarkCard key={b.id} {...b} />)
+            ) : (
+              <div className="empty-state">该分类下暂无书签</div>
+            )}
+          </div>
       </main>
 
       {/* GitHub仓库侧边栏 */}
       <GitHubRepoSidebar />
     </div>
   );
-}
+};
 
 export default App;
