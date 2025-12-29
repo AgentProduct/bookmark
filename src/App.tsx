@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef,useCallback, memo } from "react";
+import React, { useState, useEffect, useRef, useCallback, memo } from "react";
 import "./App.css";
 import * as d3 from 'd3';
 
@@ -26,6 +26,23 @@ interface Bookmark {
   bgColor?: string;
 }
 
+interface Wave {
+  path: d3.Selection<SVGPathElement, unknown, null, undefined>;
+  speed: number;
+  amplitude: number;
+  offset: number;
+}
+
+interface Particle {
+  x: number;
+  y: number;
+  speedX: number;
+  speedY: number;
+  radius: number;
+  color: string;
+  opacity: number;
+}
+
 // 获取分类图标
 const getCategoryIcon = (category: string): string => {
   return config?.categoryIcons?.[category] || "📁";
@@ -35,7 +52,6 @@ const getCategoryIcon = (category: string): string => {
 const GitHubRepoSidebar = () => {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
 
   // 编程语言颜色映射
   const languageColors: Record<string, string> = {
@@ -65,7 +81,6 @@ const GitHubRepoSidebar = () => {
     const fetchGitHubRepos = async () => {
       try {
         setLoading(true);
-        setError(false);
 
         // 使用GitHub API搜索热门仓库（使用stars排序，获取星标数最多的仓库）
         // 注意：GitHub API有速率限制，未认证请求每小时最多60次
@@ -101,7 +116,6 @@ const GitHubRepoSidebar = () => {
         setRepos(formattedRepos);
       } catch (err) {
         console.error("Failed to fetch GitHub repos:", err);
-        setError(true);
 
         // 出错时使用简化的模拟数据
         const fallbackRepos: GitHubRepo[] = [
@@ -152,15 +166,6 @@ const GitHubRepoSidebar = () => {
       <aside className="github-sidebar">
         <h2>GitHub热门仓库</h2>
         <div className="github-loading">加载中...</div>
-      </aside>
-    );
-  }
-
-  if (error) {
-    return (
-      <aside className="github-sidebar">
-        <h2>GitHub热门仓库</h2>
-        <div className="github-error">加载失败，显示模拟数据</div>
       </aside>
     );
   }
@@ -236,8 +241,7 @@ const BookmarkCard = memo(function BookmarkCard({
               style={{ backgroundColor: bgColor }}
               src={
                 icon ||
-                `https://www.google.com/s2/favicons?domain=${
-                  new URL(url).hostname
+                `https://www.google.com/s2/favicons?domain=${new URL(url).hostname
                 }&sz=32`
               }
               alt={`${title} logo`}
@@ -350,14 +354,15 @@ const App: React.FC = () => {
 
     // 创建波浪动画
     const waveCount = 3;
-    const waves = [];
+    const waves: Wave[] = [];
+
     const colors = ['#818cf8', '#4ade80', '#10b981'];
     const speeds = [0.005, 0.003, 0.007];
     const amplitudes = [20, 15, 25];
 
     // 添加粒子系统
     const particleCount = 120;
-    const particles = [];
+    const particles: Particle[] = [];
     const particleGroup = svg.append('g').attr('class', 'particles');
 
     // 初始化粒子
@@ -383,7 +388,7 @@ const App: React.FC = () => {
       .attr('opacity', d => d.opacity);
 
     // 创建波浪路径生成器
-    const createWave = (index) => {
+    const createWave = (index: number) => {
       const wave = svg.append('path')
         .attr('fill', 'none')
         .attr('stroke', colors[index % colors.length])
@@ -405,23 +410,23 @@ const App: React.FC = () => {
 
     // 波浪动画函数
     const animateWave = () => {
-      waves.forEach((wave, index) => {
+      waves.forEach(wave => {
         wave.offset += wave.speed;
-        const pathData = d3.line()
-          .x((d) => d.x)
-          .y((d) => d.y)
+        const pathData = d3.line<[number, number]>()
+          .x(d => d[0])
+          .y(d => d[1])
           .curve(d3.curveBasis)(
-            Array.from({length: 100}, (_, i) => ({
-              x: (i / 99) * width,
-              y: 100 + Math.sin(i / 10 + wave.offset) * wave.amplitude
-            }))
+            Array.from({ length: 100 }, (_, i) => [
+              (i / 99) * width,
+              100 + Math.sin(i / 10 + wave.offset) * wave.amplitude
+            ] as [number, number])
           );
 
         wave.path.attr('d', pathData);
       });
 
       // 更新粒子位置
-      particles.forEach((p, i) => {
+      particles.forEach(p => {
         p.x += p.speedX;
         p.y += p.speedY;
 
@@ -475,9 +480,8 @@ const App: React.FC = () => {
             return (
               <li
                 key={category}
-                className={`category-item ${
-                  activeCategory === category ? "active" : ""
-                }`}
+                className={`category-item ${activeCategory === category ? "active" : ""
+                  }`}
                 onClick={() => setActiveCategory(category)}
               >
                 <span className="category-icon">
@@ -497,43 +501,43 @@ const App: React.FC = () => {
       <main className="bookmark-content" ref={contentRef}>
         {/* D3粒子动画 */}
         <svg ref={backgroundRef} className="content-animation"></svg>
-       <div className="content-container">
-         <div className="content-header">
-          <div className="header-left">
-            <h1>
-              {activeCategory === "all" ? "全部书签" : activeCategory} (
-              {filteredBookmarks.length})
-            </h1>
-            <div className="search-container">
-              <input
-                type="text"
-                placeholder="搜索书签标题..."
-                value={searchTerm}
-                onChange={handleSearchChange}
-                className="search-input"
-                aria-label="搜索书签"
-              />
-              {searchTerm && (
-                <button
-                  className="clear-search-btn"
-                  onClick={clearSearch}
-                  aria-label="清除搜索"
-                >
-                  ×
-                </button>
-              )}
+        <div className="content-container">
+          <div className="content-header">
+            <div className="header-left">
+              <h1>
+                {activeCategory === "all" ? "全部书签" : activeCategory} (
+                {filteredBookmarks.length})
+              </h1>
+              <div className="search-container">
+                <input
+                  type="text"
+                  placeholder="搜索书签标题..."
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  className="search-input"
+                  aria-label="搜索书签"
+                />
+                {searchTerm && (
+                  <button
+                    className="clear-search-btn"
+                    onClick={clearSearch}
+                    aria-label="清除搜索"
+                  >
+                    ×
+                  </button>
+                )}
+              </div>
             </div>
+
+            <button
+              className={`compact-toggle ${compactMode ? "active" : ""}`}
+              onClick={() => setCompactMode((v) => !v)}
+              aria-label="切换紧凑/正常视图"
+            >
+              {compactMode ? "🌐" : "📋"}
+            </button>
           </div>
-      
-          <button
-            className={`compact-toggle ${compactMode ? "active" : ""}`}
-            onClick={() => setCompactMode((v) => !v)}
-            aria-label="切换紧凑/正常视图"
-          >
-            {compactMode ? "🌐" : "📋"}
-          </button>
-        </div>
-      
+
           <div
             className={`bookmark-grid ${compactMode ? "compact" : ""} ${isAnimating ? "fade-in" : ""}`}
           >
@@ -543,7 +547,7 @@ const App: React.FC = () => {
               <div className="empty-state">该分类下暂无书签</div>
             )}
           </div>
-       </div>
+        </div>
       </main>
 
       {/* GitHub仓库侧边栏 */}
