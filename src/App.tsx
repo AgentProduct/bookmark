@@ -4,6 +4,18 @@ import "./App.css";
 // 声明全局config变量
 declare const config: any;
 
+// GitHub仓库接口
+interface GitHubRepo {
+  id: number;
+  name: string;
+  full_name: string;
+  description: string;
+  html_url: string;
+  stargazers_count: number;
+  language: string;
+  language_color?: string;
+}
+
 interface Bookmark {
   id: number;
   title: string;
@@ -16,6 +28,181 @@ interface Bookmark {
 // 获取分类图标
 const getCategoryIcon = (category: string): string => {
   return config?.categoryIcons?.[category] || "📁";
+};
+
+/* GitHub仓库侧边栏组件 */
+const GitHubRepoSidebar = () => {
+  const [repos, setRepos] = useState<GitHubRepo[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  // 编程语言颜色映射
+  const languageColors: Record<string, string> = {
+    JavaScript: "#f1e05a",
+    TypeScript: "#2b7489",
+    Python: "#3572A5",
+    Java: "#b07219",
+    C: "#555555",
+    "C++": "#f34b7d",
+    "C#": "#178600",
+    Go: "#00ADD8",
+    Rust: "#dea584",
+    Ruby: "#701516",
+    PHP: "#4F5D95",
+    Swift: "#ffac45",
+    Kotlin: "#A97BFF",
+    Dart: "#00B4AB",
+    HTML: "#e34c26",
+    CSS: "#563d7c",
+    Shell: "#89e051",
+    Scala: "#c22d40",
+    R: "#198CE7",
+  };
+
+  // 获取GitHub热门仓库
+  useEffect(() => {
+    const fetchGitHubRepos = async () => {
+      try {
+        setLoading(true);
+        setError(false);
+
+        // 使用GitHub API搜索热门仓库（使用stars排序，获取星标数最多的仓库）
+        // 注意：GitHub API有速率限制，未认证请求每小时最多60次
+        const response = await fetch(
+          "https://api.github.com/search/repositories?q=stars:>20000+sort:stars&per_page=20",
+          {
+            headers: {
+              Authorization: `Bearer`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`GitHub API error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // 处理API响应，添加语言颜色
+        const formattedRepos: GitHubRepo[] = data.items.map((item: any) => ({
+          id: item.id,
+          name: item.name,
+          full_name: item.full_name,
+          description: item.description,
+          html_url: item.html_url,
+          stargazers_count: item.stargazers_count,
+          language: item.language,
+          language_color: item.language
+            ? languageColors[item.language]
+            : undefined,
+        }));
+
+        setRepos(formattedRepos);
+      } catch (err) {
+        console.error("Failed to fetch GitHub repos:", err);
+        setError(true);
+
+        // 出错时使用简化的模拟数据
+        const fallbackRepos: GitHubRepo[] = [
+          {
+            id: 1,
+            name: "react",
+            full_name: "facebook/react",
+            description:
+              "React.js - A JavaScript library for building user interfaces.",
+            html_url: "https://github.com/facebook/react",
+            stargazers_count: 224000,
+            language: "JavaScript",
+            language_color: languageColors.JavaScript,
+          },
+          {
+            id: 2,
+            name: "vue",
+            full_name: "vuejs/vue",
+            description: "Vue.js - The Progressive JavaScript Framework",
+            html_url: "https://github.com/vuejs/vue",
+            stargazers_count: 204000,
+            language: "JavaScript",
+            language_color: languageColors.JavaScript,
+          },
+          {
+            id: 3,
+            name: "typescript",
+            full_name: "microsoft/TypeScript",
+            description: "TypeScript - TypeScript is a superset of JavaScript",
+            html_url: "https://github.com/microsoft/TypeScript",
+            stargazers_count: 108000,
+            language: "TypeScript",
+            language_color: languageColors.TypeScript,
+          },
+        ];
+
+        setRepos(fallbackRepos);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGitHubRepos();
+  }, []);
+
+  if (loading) {
+    return (
+      <aside className="github-sidebar">
+        <h2>GitHub热门仓库</h2>
+        <div className="github-loading">加载中...</div>
+      </aside>
+    );
+  }
+
+  if (error) {
+    return (
+      <aside className="github-sidebar">
+        <h2>GitHub热门仓库</h2>
+        <div className="github-error">加载失败，显示模拟数据</div>
+      </aside>
+    );
+  }
+
+  return (
+    <aside className="github-sidebar">
+      <h2>GitHub热门仓库</h2>
+      <ul className="github-repo-list">
+        {repos.map((repo) => (
+          <li key={repo.id} className="github-repo-item">
+            <a
+              href={repo.html_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="github-repo-title"
+              title={repo.full_name}
+            >
+              {repo.full_name}
+            </a>
+            {repo.description && (
+              <p className="github-repo-description">{repo.description}</p>
+            )}
+            <div className="github-repo-meta">
+              <span className="github-repo-language">
+                {repo.language && (
+                  <>
+                    <span
+                      className="github-repo-language-color"
+                      style={{ backgroundColor: repo.language_color }}
+                    />
+                    {repo.language}
+                  </>
+                )}
+              </span>
+              <span className="github-repo-stars">
+                {repo.stargazers_count.toLocaleString()}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  );
 };
 
 /* 书签卡片（保持不变，只微调点击动画时长） */
@@ -230,6 +417,9 @@ function App() {
           )}
         </div>
       </main>
+
+      {/* GitHub仓库侧边栏 */}
+      <GitHubRepoSidebar />
     </div>
   );
 }
