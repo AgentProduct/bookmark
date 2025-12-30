@@ -481,6 +481,17 @@ const App: React.FC = () => {
       <aside className="sidebar">
         <div className="sidebar-header">
           <h2>书签分类</h2>
+          <div
+            className="user-avatar"
+            onClick={() =>
+              window.open("https://zhengjialux.github.io/", "_blank")
+            }
+          >
+            <img
+              src="https://avatars.githubusercontent.com/u/20078022?v=4"
+              alt="用户头像"
+            />
+          </div>
         </div>
 
         <ul className="category-list">
