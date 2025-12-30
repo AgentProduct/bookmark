@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, memo } from "react";
 import "./App.css";
-import * as d3 from 'd3';
+import * as d3 from "d3";
 
 // 声明全局config变量
 declare const config: any;
@@ -42,6 +42,9 @@ interface Particle {
   color: string;
   opacity: number;
 }
+
+// 导入默认图标
+import defaultFavicon from "./assets/default-favicon.svg";
 
 // 获取分类图标
 const getCategoryIcon = (category: string): string => {
@@ -241,16 +244,20 @@ const BookmarkCard = memo(function BookmarkCard({
               style={{ backgroundColor: bgColor }}
               src={
                 icon ||
-                `https://www.google.com/s2/favicons?domain=${new URL(url).hostname
+                `https://www.google.com/s2/favicons?domain=${
+                  new URL(url).hostname
                 }&sz=32`
               }
               alt={`${title} logo`}
               loading="lazy"
               onError={(e) => {
                 // 当favicon不可用时使用默认图标
-                (e.target as HTMLImageElement).src =
-                  "/icons/default-favicon.svg";
-                (e.target as HTMLImageElement).style.display = "block";
+                const target = e.target as HTMLImageElement;
+                // 防止无限循环：只有当当前src不是默认图标时才替换
+                if (target.src !== defaultFavicon) {
+                  target.src = defaultFavicon;
+                  target.style.display = "block";
+                }
               }}
             />
             {title}
@@ -283,7 +290,7 @@ const BookmarkCard = memo(function BookmarkCard({
 
 /* 书签卡片（保持不变，只微调点击动画时长） */
 const App: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCategory, setActiveCategory] = useState("all");
   const backgroundRef = useRef<SVGSVGElement>(null);
   const contentRef = useRef<HTMLDivElement>(null); // 添加内容区域ref
 
@@ -347,23 +354,24 @@ const App: React.FC = () => {
     const height = container.clientHeight;
 
     // 清除现有SVG内容
-    d3.select(backgroundRef.current).selectAll('*').remove();
-    const svg = d3.select(backgroundRef.current)
-      .attr('width', width)
-      .attr('height', height);
+    d3.select(backgroundRef.current).selectAll("*").remove();
+    const svg = d3
+      .select(backgroundRef.current)
+      .attr("width", width)
+      .attr("height", height);
 
     // 创建波浪动画
     const waveCount = 3;
     const waves: Wave[] = [];
 
-    const colors = ['#818cf8', '#4ade80', '#10b981'];
+    const colors = ["#818cf8", "#4ade80", "#10b981"];
     const speeds = [0.005, 0.003, 0.007];
     const amplitudes = [20, 15, 25];
 
     // 添加粒子系统
     const particleCount = 120;
     const particles: Particle[] = [];
-    const particleGroup = svg.append('g').attr('class', 'particles');
+    const particleGroup = svg.append("g").attr("class", "particles");
 
     // 初始化粒子
     for (let i = 0; i < particleCount; i++) {
@@ -374,32 +382,34 @@ const App: React.FC = () => {
         color: colors[Math.floor(Math.random() * colors.length)],
         speedX: (Math.random() - 0.5) * 0.5,
         speedY: (Math.random() - 0.5) * 0.5,
-        opacity: Math.random() * 0.5 + 0.2
+        opacity: Math.random() * 0.5 + 0.2,
       });
     }
 
     // 创建粒子元素
-    const particleElements = particleGroup.selectAll('circle')
+    const particleElements = particleGroup
+      .selectAll("circle")
       .data(particles)
       .enter()
-      .append('circle')
-      .attr('r', d => d.radius)
-      .attr('fill', d => d.color)
-      .attr('opacity', d => d.opacity);
+      .append("circle")
+      .attr("r", (d) => d.radius)
+      .attr("fill", (d) => d.color)
+      .attr("opacity", (d) => d.opacity);
 
     // 创建波浪路径生成器
     const createWave = (index: number) => {
-      const wave = svg.append('path')
-        .attr('fill', 'none')
-        .attr('stroke', colors[index % colors.length])
-        .attr('stroke-width', 2)
-        .attr('opacity', 0.6);
+      const wave = svg
+        .append("path")
+        .attr("fill", "none")
+        .attr("stroke", colors[index % colors.length])
+        .attr("stroke-width", 2)
+        .attr("opacity", 0.6);
 
       return {
         path: wave,
         speed: speeds[index % speeds.length],
         amplitude: amplitudes[index % amplitudes.length],
-        offset: Math.random() * 1000
+        offset: Math.random() * 1000,
       };
     };
 
@@ -410,23 +420,28 @@ const App: React.FC = () => {
 
     // 波浪动画函数
     const animateWave = () => {
-      waves.forEach(wave => {
+      waves.forEach((wave) => {
         wave.offset += wave.speed;
-        const pathData = d3.line<[number, number]>()
-          .x(d => d[0])
-          .y(d => d[1])
+        const pathData = d3
+          .line<[number, number]>()
+          .x((d) => d[0])
+          .y((d) => d[1])
           .curve(d3.curveBasis)(
-            Array.from({ length: 100 }, (_, i) => [
-              (i / 99) * width,
-              100 + Math.sin(i / 10 + wave.offset) * wave.amplitude
-            ] as [number, number])
-          );
+          Array.from(
+            { length: 100 },
+            (_, i) =>
+              [
+                (i / 99) * width,
+                100 + Math.sin(i / 10 + wave.offset) * wave.amplitude,
+              ] as [number, number]
+          )
+        );
 
-        wave.path.attr('d', pathData);
+        wave.path.attr("d", pathData);
       });
 
       // 更新粒子位置
-      particles.forEach(p => {
+      particles.forEach((p) => {
         p.x += p.speedX;
         p.y += p.speedY;
 
@@ -438,9 +453,7 @@ const App: React.FC = () => {
       });
 
       // 更新粒子元素
-      particleElements
-        .attr('cx', d => d.x)
-        .attr('cy', d => d.y);
+      particleElements.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
 
       requestAnimationFrame(animateWave);
     };
@@ -448,10 +461,10 @@ const App: React.FC = () => {
     animateWave();
 
     // 监听内容区域尺寸变化
-    const resizeObserver = new ResizeObserver(entries => {
+    const resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
         const { width, height } = entry.contentRect || {};
-        svg.attr('width', width).attr('height', height);
+        svg.attr("width", width).attr("height", height);
       }
     });
 
@@ -480,8 +493,9 @@ const App: React.FC = () => {
             return (
               <li
                 key={category}
-                className={`category-item ${activeCategory === category ? "active" : ""
-                  }`}
+                className={`category-item ${
+                  activeCategory === category ? "active" : ""
+                }`}
                 onClick={() => setActiveCategory(category)}
               >
                 <span className="category-icon">
@@ -539,7 +553,9 @@ const App: React.FC = () => {
           </div>
 
           <div
-            className={`bookmark-grid ${compactMode ? "compact" : ""} ${isAnimating ? "fade-in" : ""}`}
+            className={`bookmark-grid ${compactMode ? "compact" : ""} ${
+              isAnimating ? "fade-in" : ""
+            }`}
           >
             {filteredBookmarks.length > 0 ? (
               filteredBookmarks.map((b) => <BookmarkCard key={b.id} {...b} />)

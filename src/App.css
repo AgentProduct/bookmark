@@ -29,6 +29,8 @@
   left: 0;
   width: 100%;
   padding: 2rem;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 /* =======================
@@ -247,7 +249,6 @@
   flex: 1;
   padding: 2rem;
   height: 100vh;
-  overflow-y: auto;
   background: linear-gradient(
     135deg,
     rgba(129, 140, 248, 0.04),
