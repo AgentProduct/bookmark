@@ -247,7 +247,6 @@
 ======================= */
 .bookmark-content {
   flex: 1;
-  padding: 2rem;
   height: 100vh;
   background: linear-gradient(
     135deg,
