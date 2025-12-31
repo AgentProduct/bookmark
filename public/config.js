@@ -1052,7 +1052,7 @@ const config = {
     {
       id: 150,
       title: "W3Cschool",
-      url: "https://www.w3cschool.cn/",
+      url: "https://www.w3cschool.cn/tutorial/",
       category: "社区",
       icon: "/icons/w3cschool-favicon.ico",
     },
