@@ -1216,6 +1216,13 @@ const config = {
       url: "https://momentjs.com/",
       category: "工具",
       icon: "/icons/moment-favicon.png",
+    },
+    {
+      id: 174,
+      title: "Homebrew",
+      url: "https://brew.sh/",
+      category: "工具",
+      icon: "https://brew.sh/assets/img/homebrew.svg",
     }
   ],
   categoryIcons: {
