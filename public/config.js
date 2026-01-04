@@ -1237,6 +1237,20 @@ const config = {
       url: "https://www.dywt.com.cn/index.htm",
       category: "社区",
       icon: "https://www.dywt.com.cn/images/e.ico",
+    },
+    {
+      id: 177,
+      title: "豆包",
+      url: "https://www.doubao.com/chat/",
+      category: "AI",
+      icon: "https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/doubao/chat/favicon.png",
+    },
+    {
+      id: 178,
+      title: "Swagger",
+      url: "https://swagger.io/",
+      category: "工具",
+      icon: "https://static1.smartbear.co/swagger/media/assets/swagger_fav.png",
     }
   ],
   categoryIcons: {
