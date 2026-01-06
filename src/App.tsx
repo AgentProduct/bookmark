@@ -68,6 +68,8 @@ const GitHubRepoSidebar = () => {
   const sidebarRef = useRef<HTMLDivElement>(null);
   // 搜索防抖定时器ref
   const searchDebounceRef = useRef<number | null>(null);
+  // 用于确保fetchHotRepos只执行一次的标志
+  const hasFetchedHotRepos = useRef(false);
 
   const languageColors: Record<string, string> = {
     JavaScript: "#f1e05a",
@@ -232,7 +234,11 @@ const GitHubRepoSidebar = () => {
   }, [loadingMore, hasMore]);
 
   useEffect(() => {
-    fetchHotRepos();
+    // 使用ref确保fetchHotRepos只执行一次，避免React StrictMode下的重复调用
+    if (!hasFetchedHotRepos.current) {
+      fetchHotRepos();
+      hasFetchedHotRepos.current = true;
+    }
     
     // 组件卸载时清除防抖定时器
     return () => {
