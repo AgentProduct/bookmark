@@ -751,14 +751,14 @@ const config = {
       id: 107,
       title: "阿里云",
       url: "https://www.aliyun.com/",
-      category: "cloud",
+      category: "Cloud",
       icon: "/icons/aliyun-32-32.ico",
     },
     {
       id: 108,
       title: "腾讯云",
       url: "https://cloud.tencent.com/",
-      category: "cloud",
+      category: "Cloud",
       icon: "https://cloud.tencent.com/favicon.ico",
     },
     {
@@ -1329,6 +1329,27 @@ const config = {
         category: "工具",
         icon: "https://animista.net/favicon.ico",
     },
+    {
+      id: 190,
+      title: 'Data Structure Visualizations',
+      url: 'https://www.cs.usfca.edu/~galles/visualization/Algorithms.html',
+      category: "工具",
+      icon: "https://www.cs.usfca.edu/~galles/visualization/favicon.ico",
+    },
+    {
+      id: 191,
+      title: 'VisuAlgo',
+      url: 'https://visualgo.net/zh',
+      category: "工具",
+      icon: "https://visualgo.net/img/favicon.png",
+    },
+     {
+      id: 192,
+      title: 'Algorithm Visualizer',
+      url: 'https://algorithm-visualizer.org/',
+      category: "工具",
+      icon: "https://algorithm-visualizer.org/favicon.png",
+    }
   ],
   categoryIcons: {
     视频: "🎬",
@@ -1353,7 +1374,7 @@ const config = {
     "Three.js": "🧊",
     VPN: "🔒",
     Email: "📧",
-    cloud: "☁️",
+    Cloud: "☁️",
     UI: "🎨",
     GIS: "🗺️",
     BOOK: "📚",
