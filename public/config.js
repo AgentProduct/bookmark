@@ -1407,6 +1407,18 @@ const config = {
       category: "工具",
       icon: "https://www.rabbitmq.com/img/rabbitmq-logo.svg",
     },
+    {
+      title: 'GitCode',
+      url: 'https://gitcode.com/',
+      category: "社区",
+      icon: "https://cdn-static.gitcode.com/static/images/logo-favicon.png",
+    },
+    {
+      title: 'Nifi',
+      url: 'https://nifi.apache.org/',
+      category: "工具",
+      icon: "https://nifi.apache.org/images/apache-nifi-drop-logo.svg",
+    }
   ],
   categoryIcons: {
     视频: "🎬",
