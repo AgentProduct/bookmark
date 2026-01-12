@@ -1418,6 +1418,12 @@ const config = {
       url: 'https://nifi.apache.org/',
       category: "工具",
       icon: "https://nifi.apache.org/images/apache-nifi-drop-logo.svg",
+    },
+    {
+      title: 'DCloud',
+      url: 'https://dev.dcloud.net.cn/',
+      category: "社区",
+      icon: "https://ask.dcloud.net.cn/static/css/classblack/img/favicon.png",
     }
   ],
   categoryIcons: {
