@@ -1424,6 +1424,12 @@ const config = {
       url: 'https://dev.dcloud.net.cn/',
       category: "社区",
       icon: "https://ask.dcloud.net.cn/static/css/classblack/img/favicon.png",
+    },
+    {
+      title: 'Imaging',
+      url: "https://products.aspose.app/imaging/conversion",
+      category: "工具",
+      icon: "https://products.aspose.app/imaging/shared/img/favicon.ico",
     }
   ],
   categoryIcons: {
