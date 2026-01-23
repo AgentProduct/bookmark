@@ -1430,6 +1430,24 @@ const config = {
       url: "https://products.aspose.app/imaging/conversion",
       category: "工具",
       icon: "https://products.aspose.app/imaging/shared/img/favicon.ico",
+    },
+    {
+      title: 'Pencil',
+      url: "https://www.pencil.dev/",
+      category: "UI",
+      icon: "https://www.pencil.dev/favicon.ico",
+    },
+    {
+      title: 'Superdesign',
+      url: 'https://app.superdesign.dev/',
+      category: "UI",
+      icon: "https://app.superdesign.dev/superdesign_logo.svg",
+    },
+    {
+      title: 'Canva',
+      url: 'https://www.canva.cn/',
+      category: "UI",
+      icon: "https://static.canva.cn/domain-assets/canva/static/images/favicon-1.ico",
     }
   ],
   categoryIcons: {
