@@ -1448,7 +1448,19 @@ const config = {
       url: 'https://www.canva.cn/',
       category: "UI",
       icon: "https://static.canva.cn/domain-assets/canva/static/images/favicon-1.ico",
-    }
+    },
+    {
+      title: "styled-components",
+      url: "https://styled-components.com/",
+      category: "文档",
+      icon: "https://styled-components.com/favicon.png",
+    },
+    {
+      title: "Pug",
+      url: "https://pugjs.org/",
+      category: "文档",
+      icon: "https://pugjs.org/images/favicon.ico",
+    },
   ],
   categoryIcons: {
     视频: "🎬",
