@@ -1462,10 +1462,22 @@ const config = {
       icon: "https://pugjs.org/images/favicon.ico",
     },
     {
-      title: "Kubernetes",
-      url: "https://kubernetes.io/",
-      category: "环境",
-      icon: "https://kubernetes.io/icons/favicon-32.png",
+      title: "Mongoose ODM",
+      url: "https://mongoosejs.com/",
+      category: "工具",
+      icon: "https://mongoosejs.com/docs/images/favicon/favicon-32x32.png",
+    },
+    {
+      title: "N8N",
+      url: "https://n8n.io/",
+      category: "工具",
+      icon: "https://n8n.io/favicon.ico",
+    },
+    {
+      title: "DataHub",
+      url: "https://datahub.com/",
+      category: "工具",
+      icon: "/icons/dataHub-favicon.webp",
     }
   ],
   categoryIcons: {
