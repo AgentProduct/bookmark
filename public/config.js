@@ -1484,6 +1484,12 @@ const config = {
       url: "https://npmx.dev/",
       category: "社区",
       icon: "https://npmx.dev/favicon.svg",
+    },
+    {
+      title: "NestJS",
+      url: "https://nestjs.com/",
+      category: "Node.js",
+      icon: "/icons/nest-favicon.ico",
     }
   ],
   categoryIcons: {
