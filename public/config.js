@@ -1496,6 +1496,12 @@ const config = {
       url: "https://hono.dev/",
       category: "Node.js",
       icon: "https://hono.dev/favicon.ico",
+    },
+    {
+      title: "Quora",
+      url: "https://www.quora.com/",
+      category: "资讯",
+      icon: "/icons/quora-favicon.ico",
     }
   ],
   categoryIcons: {
