@@ -1562,6 +1562,36 @@ const config = {
       url: "https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5",
       category: "资讯",
       icon: "https://zh.wikipedia.org/static/favicon/wikipedia.ico",
+    },
+    {
+      title: "喜马拉雅",
+      url: "https://studio.ximalaya.com/",
+      category: "资讯",
+      icon: "https://s1.xmcdn.com/lib/common/last/resource/1.0.0/icon/www/favicon.ico",
+    },
+    {
+      title: "得到APP",
+      url: "https://www.dedao.cn/",
+      category: "资讯",
+      icon: "https://www.dedao.cn/favicon.ico",
+    },
+    {
+      title: "慕课网",
+      url: "https://www.imooc.com/",
+      category: "资讯",
+      icon: "https://www.imooc.com/favicon.ico",
+    },
+    {
+      title: "我要自学网",
+      url: "https://www.51zxw.net/",
+      category: "资讯",
+      icon: "https://www.51zxw.net/favicon.ico",
+    },
+    {
+      title: "沪江网校",
+      url: "https://class.hujiang.com/",
+      category: "资讯",
+      icon: "https://res.hjfile.cn/classec/favicon.ico",
     }
   ],
   categoryIcons: {
