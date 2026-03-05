@@ -1327,7 +1327,7 @@ const config = {
     {
       title: 'Kafka',
       url: 'https://kafka.apache.org/',
-      category: "工具",
+      category: "解决方案",
       icon: "https://kafka.apache.org/images/apache.png",
       Mark: true,
     },
@@ -1416,7 +1416,7 @@ const config = {
     {
       title: 'Nifi',
       url: 'https://nifi.apache.org/',
-      category: "工具",
+      category: "解决方案",
       icon: "https://nifi.apache.org/images/apache-nifi-drop-logo.svg",
     },
     {
@@ -1470,13 +1470,13 @@ const config = {
     {
       title: "N8N",
       url: "https://n8n.io/",
-      category: "工具",
+      category: "解决方案",
       icon: "https://n8n.io/favicon.ico",
     },
     {
       title: "DataHub",
       url: "https://datahub.com/",
-      category: "工具",
+      category: "解决方案",
       icon: "/icons/dataHub-favicon.webp",
     },
     {
@@ -1592,6 +1592,36 @@ const config = {
       url: "https://class.hujiang.com/",
       category: "资讯",
       icon: "https://res.hjfile.cn/classec/favicon.ico",
+    },
+    {
+      title: "Zitadel",
+      url: "https://zitadel.com/",
+      category: "解决方案",
+      icon: "https://zitadel.com/favicon.ico",
+    },
+    {
+      title: "Kibana",
+      url: "https://www.elastic.co/kibana",
+      category: "解决方案",
+      icon: "https://www.elastic.co/icon-192.png",
+    },
+    {
+      title: "WebauthnGuide",
+      url: "https://webauthn.guide/",
+      category: "解决方案",
+      icon: "https://webauthn.guide/dist/images/favicon.png",
+    },
+    {
+      title: "Webauthn",
+      url: "https://webauthn.io/",
+      category: "解决方案",
+      icon: "https://webauthn.io/static/images/favicon.png",
+    },
+    {
+      title: "OpenMetadata",
+      url: "https://docs.open-metadata.org/v1.12.x",
+      category: "解决方案",
+      icon: "/icons/openmetadata-favicon.jpg",
     }
   ],
   categoryIcons: {
@@ -1622,5 +1652,6 @@ const config = {
     GIS: "🗺️",
     BOOK: "📚",
     Mark: "⭐",
+    解决方案: "💡",
   },
 };
