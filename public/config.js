@@ -23,7 +23,19 @@ const config = {
       title: "DeepSeek",
       url: "https://chat.deepseek.com/",
       category: "AI",
-      icon: "https://chat.deepseek.com/favicon.svg",
+      icon: "",
+    },
+    {
+      title: "元宝",
+      url: "https://yuanbao.tencent.com/",
+      category: "AI",
+      icon: "",
+    },
+    {
+      title: "千问",
+      url: "https://www.qianwen.com/",
+      category: "AI",
+      icon: "",
     },
     {
       title: "React Docs",
