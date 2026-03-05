@@ -1502,6 +1502,66 @@ const config = {
       url: "https://www.quora.com/",
       category: "资讯",
       icon: "/icons/quora-favicon.ico",
+    },
+    {
+      title: "Instagram",
+      url: "https://www.instagram.com/",
+      category: "资讯",
+      icon: "/icons/instagram-favicon.ico",
+    },
+    {
+      title: "Facebook",
+      url: "https://www.facebook.com/",
+      category: "资讯",
+      icon: "/icons/facebook-favicon.ico",
+    },
+    {
+      title: "OK",
+      url: "https://ok.ru/",
+      category: "资讯",
+      icon: "https://ok.ru/favicon.svg",
+    },
+    {
+      title: "VK",
+      url: "https://vk.com/",
+      category: "资讯",
+      icon: "https://vk.com/images/icons/favicons/fav_logo.ico",
+    },
+    {
+      title: "Discord",
+      url: "https://discord.com/",
+      category: "资讯",
+      icon: "/icons/discord-favicon.png",
+    },
+    {
+      title: "Pinterest",
+      url: "https://www.pinterest.com/",
+      category: "资讯",
+      icon: "/icons/pinterest-favicon.png",
+    },
+    {
+      title: "WhatsApp",
+      url: "https://web.whatsapp.com/",
+      category: "资讯",
+      icon: "/icons/whatsapp-favicon.png",
+    },
+    {
+      title: "Messenger",
+      url: "https://www.messenger.com/",
+      category: "资讯",
+      icon: "/icons/messenger-favicon.ico",
+    },
+    {
+      title: "OmeTV",
+      url: "https://ome.tv/",
+      category: "资讯",
+      icon: "/icons/ometv-favicon.svg",
+    },
+    {
+      title: "维基百科",
+      url: "https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5",
+      category: "资讯",
+      icon: "https://zh.wikipedia.org/static/favicon/wikipedia.ico",
     }
   ],
   categoryIcons: {
