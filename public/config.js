@@ -1634,6 +1634,18 @@ const config = {
       url: "https://docs.open-metadata.org/v1.12.x",
       category: "解决方案",
       icon: "/icons/openmetadata-favicon.jpg",
+    },
+    {
+      title: "豆瓣",
+      url: "https://www.douban.com/",
+      category: "资讯",
+      icon: "https://www.douban.com/favicon.ico",
+    },
+    {
+      title: "花瓣",
+      url: "https://huaban.com/",
+      category: "资讯",
+      icon: "https://huaban.com/favicon.ico",
     }
   ],
   categoryIcons: {
