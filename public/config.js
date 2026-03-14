@@ -1652,6 +1652,18 @@ const config = {
       url: "https://huaban.com/",
       category: "摄影",
       icon: "https://huaban.com/favicon.ico",
+    },
+    {
+      title: "拉勾教育",
+      url: "https://edu.lagou.com/",
+      category: "资讯",
+      icon: "",
+    },
+    {
+      title: "十点读书",
+      url: "https://www.10dian.com/",
+      category: "资讯",
+      icon: "",
     }
   ],
   categoryIcons: {
