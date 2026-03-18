@@ -1700,6 +1700,12 @@ const config = {
       url: "https://www.coze.cn/overview",
       category: "AI",
       icon: "",
+    },
+    {
+      title: "编程导航",
+      url: "https://www.codefather.cn/",
+      category: "社区",
+      icon: "",
     }
   ],
   categoryIcons: {
