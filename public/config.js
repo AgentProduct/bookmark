@@ -1482,8 +1482,20 @@ const config = {
     {
       title: "N8N",
       url: "https://n8n.io/",
-      category: "解决方案",
-      icon: "https://n8n.io/favicon.ico",
+      category: "AI",
+      icon: "",
+    },
+    {
+      title: "OpenClaw",
+      url: "https://openclaw.ai/",
+      category: "AI",
+      icon: "",
+    },
+    {
+      title: "ClawHub",
+      url: "https://clawhub.ai/",
+      category: "AI",
+      icon: "",
     },
     {
       title: "DataHub",
