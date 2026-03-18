@@ -1664,6 +1664,24 @@ const config = {
       url: "https://www.10dian.com/",
       category: "资讯",
       icon: "",
+    },
+    {
+      title: "抖音小程序",
+      url: "https://developer.open-douyin.com/",
+      category: "跨终端框架",
+      icon: "",
+    },
+    {
+      title: "QQ小程序",
+      url: "https://q.qq.com/#/",
+      category: "跨终端框架",
+      icon: "",
+    },
+    {
+      title: "京东小程序",
+      url: "https://mp.jd.com/",
+      category: "跨终端框架",
+      icon: "",
     }
   ],
   categoryIcons: {
