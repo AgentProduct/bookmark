@@ -1694,6 +1694,12 @@ const config = {
       url: "https://mp.jd.com/",
       category: "跨终端框架",
       icon: "",
+    },
+    {
+      title: "扣子",
+      url: "https://www.coze.cn/overview",
+      category: "AI",
+      icon: "",
     }
   ],
   categoryIcons: {
