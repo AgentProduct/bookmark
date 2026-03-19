@@ -1706,6 +1706,12 @@ const config = {
       url: "https://www.codefather.cn/",
       category: "社区",
       icon: "",
+    },
+    {
+      title: "Nest 中文",
+      url: "https://docs.nestjs.cn/",
+      category: "Node.js",
+      icon: "",
     }
   ],
   categoryIcons: {
