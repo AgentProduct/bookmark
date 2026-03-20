@@ -1476,7 +1476,7 @@ const config = {
     {
       title: "Mongoose ODM",
       url: "https://mongoosejs.com/",
-      category: "工具",
+      category: "数据库",
       icon: "https://mongoosejs.com/docs/images/favicon/favicon-32x32.png",
     },
     {
@@ -1711,6 +1711,24 @@ const config = {
       title: "Nest 中文",
       url: "https://docs.nestjs.cn/",
       category: "Node.js",
+      icon: "",
+    },
+    {
+      title: "Prisma",
+      url: "https://www.prisma.io/",
+      category: "数据库",
+      icon: "",
+    },
+    {
+      title: "Drizzle",
+      url: "https://orm.drizzle.team/",
+      category: "数据库",
+      icon: "",
+    },
+    {
+      title: "TypeORM",
+      url: "https://typeorm.io/",
+      category: "数据库",
       icon: "",
     }
   ],
