@@ -1730,6 +1730,30 @@ const config = {
       url: "https://typeorm.io/",
       category: "数据库",
       icon: "",
+    },
+    {
+      title: "天眼查",
+      url: "https://www.tianyancha.com/",
+      category: "资讯",
+      icon: "",
+    },
+    {
+      title: "脉脉",
+      url: "https://maimai.cn/",
+      category: "资讯",
+      icon: "",
+    },
+    {
+      title: "拉勾网",
+      url: "https://www.lagou.com/wn/",
+      category: "资讯",
+      icon: "",
+    },
+    {
+      title: "BOSS直聘",
+      url: "https://www.zhipin.com/",
+      category: "资讯",
+      icon: "",
     }
   ],
   categoryIcons: {
