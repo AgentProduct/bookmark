@@ -406,7 +406,7 @@ const App: React.FC = () => {
   const backgroundRef = useRef<SVGSVGElement>(null);
   const contentRef = useRef<HTMLDivElement>(null); // 添加内容区域ref
 
-  const [compactMode, setCompactMode] = useState(true);
+  const [compactMode, setCompactMode] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [baiduSearchTerm, setBaiduSearchTerm] = useState("");
