@@ -1754,6 +1754,18 @@ const config = {
       url: "https://www.zhipin.com/",
       category: "资讯",
       icon: "",
+    },
+    {
+      title: "Nitro",
+      url: "https://nitro.build/",
+      category: "工具",
+      icon: "",
+    },
+    {
+      title: "H3",
+      url: "https://h3.dev/",
+      category: "工具",
+      icon: "",
     }
   ],
   categoryIcons: {
