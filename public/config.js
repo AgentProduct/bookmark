@@ -622,8 +622,15 @@ const config = {
     {
       title: "v0.app",
       url: "https://v0.app/",
-      category: "文档",
+      category: "UI",
       icon: "/icons/v0-favicon.svg",
+      Mark: true,
+    },
+    {
+      title: "Lovable",
+      url: "https://lovable.dev/",
+      category: "UI",
+      icon: "",
       Mark: true,
     },
     {
