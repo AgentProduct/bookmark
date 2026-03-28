@@ -45,6 +45,13 @@ const config = {
       Mark: false,
     },
     {
+      title: "Vue",
+      url: "https://cn.vuejs.org/",
+      category: "Vue",
+      icon: "https://cn.vuejs.org/logo.svg",
+      Mark: false,
+    },
+    {
       title: "TypeScript Docs",
       url: "https://www.typescriptlang.org",
       category: "文档",
@@ -104,6 +111,20 @@ const config = {
       category: "环境",
       icon: "https://www.docker.com/app/uploads/2024/02/cropped-docker-logo-favicon-32x32.png",
       bgColor: "#ffffff",
+      Mark: false,
+    },
+    {
+      title: "uni-app",
+      url: "https://uniapp.dcloud.net.cn/",
+      category: "跨终端框架",
+      icon: "/icons/uni-icon.png",
+      Mark: false,
+    },
+    {
+      title: "PostgreSQL Docs",
+      url: "https://www.postgresql.org/docs/",
+      category: "数据库",
+      icon: "https://www.postgresql.org/favicon.ico",
       Mark: false,
     },
     {
@@ -315,13 +336,6 @@ const config = {
       Mark: false,
     },
     {
-      title: "Vue",
-      url: "https://cn.vuejs.org/",
-      category: "Vue",
-      icon: "https://cn.vuejs.org/logo.svg",
-      Mark: false,
-    },
-    {
       title: "Pinia",
       url: "https://pinia.vuejs.org/zh/",
       category: "Vue",
@@ -399,13 +413,6 @@ const config = {
       icon: "https://vuex.vuejs.org/logo.png",
     },
     {
-      title: "uni-app",
-      url: "https://uniapp.dcloud.net.cn/",
-      category: "跨终端框架",
-      icon: "/icons/uni-icon.png",
-      Mark: false,
-    },
-    {
       title: "微信小程序",
       url: "https://mp.weixin.qq.com/",
       category: "跨终端框架",
@@ -448,13 +455,6 @@ const config = {
       url: "https://dev.mysql.com/doc/refman/8.0/en/",
       category: "数据库",
       icon: "/icons/mysql-favicon.ico",
-      Mark: false,
-    },
-    {
-      title: "PostgreSQL Docs",
-      url: "https://www.postgresql.org/docs/",
-      category: "数据库",
-      icon: "https://www.postgresql.org/favicon.ico",
       Mark: false,
     },
     {
