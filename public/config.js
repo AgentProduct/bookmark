@@ -1844,7 +1844,7 @@ const config = {
       title: "中国政府网",
       url: "https://www.gov.cn/",
       category: "资讯",
-      icon: "",
+      icon: "/icons/trs_favicon.ico",
       Mark: true,
     }
   ],
