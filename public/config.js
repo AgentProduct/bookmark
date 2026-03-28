@@ -160,7 +160,7 @@ const config = {
       url: "https://www.producthunt.com/",
       category: "社区",
       icon: "/icons/ph-favicon-brand-500.ico",
-      Mark: false,
+      Mark: true,
     },
     {
       title: "图灵",
@@ -1832,6 +1832,20 @@ const config = {
       url: "https://replit.com",
       category: "UI",
       icon: "",
+    },
+    {
+      title: "QuestMobile",
+      url: "https://www.questmobile.com.cn/",
+      category: "资讯",
+      icon: "",
+      Mark: true,
+    },
+    {
+      title: "中国政府网",
+      url: "https://www.gov.cn/",
+      category: "资讯",
+      icon: "",
+      Mark: true,
     }
   ],
   categoryIcons: {
