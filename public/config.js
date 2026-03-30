@@ -905,7 +905,7 @@ const config = {
     {
       title: "Openvpn Connect",
       url: "https://openvpn.net/client/",
-      category: "工具",
+      category: "VPN",
       icon: "/icons/openvpn-favicon.ico",
     },
     {
@@ -1861,6 +1861,12 @@ const config = {
       icon: "",
       Mark: false,
     },
+    {
+      title: "Clash Verge",
+      url: "https://www.clashverge.dev/",
+      category: "VPN",
+      icon: "",
+    }
   ],
   categoryIcons: {
     视频: "🎬",
