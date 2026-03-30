@@ -1846,7 +1846,21 @@ const config = {
       category: "资讯",
       icon: "/icons/trs_favicon.ico",
       Mark: true,
-    }
+    },
+    {
+      title: "禅道",
+      url: "https://www.zentao.net/",
+      category: "解决方案",
+      icon: "",
+      Mark: false,
+    },
+    {
+      title: "Code X",
+      url: "https://openai.com/zh-Hans-CN/codex/",
+      category: "IDE",
+      icon: "",
+      Mark: false,
+    },
   ],
   categoryIcons: {
     视频: "🎬",
