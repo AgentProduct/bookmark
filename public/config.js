@@ -1866,6 +1866,12 @@ const config = {
       url: "https://www.clashverge.dev/",
       category: "VPN",
       icon: "",
+    },
+    {
+      title: "LlamaIndex",
+      url: "developers.llamaindex.ai",
+      category: "AI",
+      icon: "",
     }
   ],
   categoryIcons: {
