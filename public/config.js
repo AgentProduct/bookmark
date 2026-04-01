@@ -1869,7 +1869,7 @@ const config = {
     },
     {
       title: "LlamaIndex",
-      url: "developers.llamaindex.ai",
+      url: "https://developers.llamaindex.ai/",
       category: "AI",
       icon: "",
     }
