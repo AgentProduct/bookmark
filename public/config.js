@@ -1878,7 +1878,25 @@ const config = {
       url: "https://ollama.com/",
       category: "AI",
       icon: "",
-    }
+    },
+    {
+      title: "LM Studio",
+      url: "https://lmstudio.ai/",
+      category: "AI",
+      icon: "",
+    },
+    {
+      title: "vLLM",
+      url: "https://vllm.ai/",
+      category: "AI",
+      icon: "",
+    },
+    {
+      title: "llama.cpp",
+      url: "https://github.com/ggml-org/llama.cpp",
+      category: "AI",
+      icon: "GitHub",
+    },
   ],
   categoryIcons: {
     视频: "🎬",
@@ -1909,6 +1927,7 @@ const config = {
     BOOK: "📚",
     Mark: "⭐",
     解决方案: "💡",
-    摄影: "📷"
+    摄影: "📷",
+    GitHub: "👾"
   },
 };
