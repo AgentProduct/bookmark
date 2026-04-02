@@ -917,7 +917,7 @@ const config = {
     {
       title: "Cherry AI",
       url: "https://www.cherry-ai.com/",
-      category: "工具",
+      category: "AI",
       icon: "/icons/cherry-favicon.png",
     },
     {
@@ -1870,6 +1870,12 @@ const config = {
     {
       title: "LlamaIndex",
       url: "https://developers.llamaindex.ai/",
+      category: "AI",
+      icon: "",
+    },
+    {
+      title: "Ollama",
+      url: "https://ollama.com/",
       category: "AI",
       icon: "",
     }
