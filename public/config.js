@@ -1894,8 +1894,8 @@ const config = {
     {
       title: "llama.cpp",
       url: "https://github.com/ggml-org/llama.cpp",
-      category: "AI",
-      icon: "GitHub",
+      category: "GitHub",
+      icon: "",
     },
   ],
   categoryIcons: {
