@@ -1897,6 +1897,24 @@ const config = {
       category: "GitHub",
       icon: "",
     },
+    {
+      title: "Qwen",
+      url: "https://qwen.ai/",
+      category: "AI",
+      icon: "",
+    },
+    {
+      title: "腾讯混元",
+      url: "https://hunyuan.tencent.com/",
+      category: "AI",
+      icon: "",
+    },
+    {
+      title: "火山引擎",
+      url: "https://www.volcengine.com/",
+      category: "AI",
+      icon: "",
+    }
   ],
   categoryIcons: {
     视频: "🎬",
