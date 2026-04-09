@@ -1117,14 +1117,14 @@ const config = {
     {
       title: "Go 语言文档",
       url: "https://go.dev/learn/",
-      category: "社区",
+      category: "文档",
       icon: "https://go.dev/images/favicon-gopher.svg",
       Mark: false,
     },
     {
       title: "易语言",
       url: "https://www.dywt.com.cn/index.htm",
-      category: "社区",
+      category: "文档",
       icon: "https://www.dywt.com.cn/images/e.ico",
     },
     {
@@ -1926,6 +1926,7 @@ const config = {
       url: "https://huggingface.co/",
       category: "社区",
       icon: "",
+      Mark: true,
     },
     {
       title: "Hacker News",
