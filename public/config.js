@@ -1914,6 +1914,60 @@ const config = {
       url: "https://www.volcengine.com/",
       category: "AI",
       icon: "",
+    },
+    {
+      title: "V2EX",
+      url: "https://www.v2ex.com/",
+      category: "社区",
+      icon: "",
+    },
+    {
+      title: "Hugging Face",
+      url: "https://huggingface.co/",
+      category: "社区",
+      icon: "",
+    },
+    {
+      title: "Hacker News",
+      url: "https://news.ycombinator.com/",
+      category: "社区",
+      icon: "",
+    },
+    {
+      title: "Stack Overflow",
+      url: "https://stackoverflow.com/",
+      category: "社区",
+      icon: "",
+    },
+    {
+      title: "Indie Hackers",
+      url: "https://www.indiehackers.com/",
+      category: "社区",
+      icon: "",
+    },
+    {
+      title: "Reddit",
+      url: "https://www.reddit.com/",
+      category: "社区",
+      icon: "",
+    },
+    {
+      title: "博客园",
+      url: "https://www.cnblogs.com/",
+      category: "社区",
+      icon: "",
+    },
+    {
+      title: "InfoQ",
+      url: "https://www.infoq.cn/",
+      category: "资讯",
+      icon: "",
+    },
+    {
+      title: "DEV Community",
+      url: "https://dev.to/",
+      category: "社区",
+      icon: "",
     }
   ],
   categoryIcons: {
