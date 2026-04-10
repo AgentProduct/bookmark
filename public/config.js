@@ -1969,6 +1969,12 @@ const config = {
       url: "https://dev.to/",
       category: "社区",
       icon: "",
+    },
+    {
+      title: "Happy Horse",
+      url: "https://happyhorse.app/",
+      category: "AI",
+      icon: "",
     }
   ],
   categoryIcons: {
