@@ -1972,7 +1972,7 @@ const config = {
     },
     {
       title: "Happy Horse",
-      url: "https://happyhorse.app/",
+      url: "https://happyhorse-ai.com/",
       category: "AI",
       icon: "",
     }
