@@ -1975,6 +1975,19 @@ const config = {
       url: "https://happyhorse-ai.com/",
       category: "AI",
       icon: "",
+    },
+    {
+      title: "魔塔社区",
+      url: "https://modelscope.cn/home",
+      category: "社区",
+      icon: "",
+      Mark: true,
+    },
+    {
+      title: "Git LFS",
+      url: "https://git-lfs.com/",
+      category: "工具",
+      icon: "",
     }
   ],
   categoryIcons: {
