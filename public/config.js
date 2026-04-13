@@ -1933,6 +1933,7 @@ const config = {
       url: "https://news.ycombinator.com/",
       category: "社区",
       icon: "",
+      Mark: true,
     },
     {
       title: "Stack Overflow",
@@ -1987,6 +1988,12 @@ const config = {
       title: "Git LFS",
       url: "https://git-lfs.com/",
       category: "工具",
+      icon: "",
+    },
+    {
+      title: "Hermes Agent",
+      url: "https://hermes-agent.nousresearch.com/",
+      category: "AI",
       icon: "",
     }
   ],
