@@ -765,9 +765,12 @@ const App: React.FC = () => {
       {isLocked && (
         <div className="lock-screen">
           <div
+            className="lock-screen-bg-overlay"
+          />
+          <div
             className="lock-screen-bg"
             style={{ backgroundImage: `url(${lockBgUrl})` }}
-          ></div>
+          />
           <div className="lock-screen-content">
             <div className="lock-icon">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

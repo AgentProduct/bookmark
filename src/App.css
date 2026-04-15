@@ -1091,6 +1091,16 @@
   transform: scale(1.1);
 }
 
+/* 第二层遮罩 - 纯色，确保图片加载前也能遮挡内容 */
+.lock-screen-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+}
+
 .lock-screen-content {
   position: relative;
   z-index: 1;
