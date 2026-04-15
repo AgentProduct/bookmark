@@ -1015,3 +1015,208 @@
 .github-back-btn:hover {
   background: rgba(129, 140, 248, 0.45);
 }
+
+/* AI图标按钮样式 */
+.ai-icon-btn {
+  background: rgba(168, 85, 247, 0.25);
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+.ai-icon-btn:hover {
+  background: rgba(168, 85, 247, 0.45);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+}
+
+/* AI弹框样式 - 复用翻译弹框样式但使用紫色主题 */
+.ai-modal {
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+.ai-modal .translate-modal-header {
+  background: rgba(168, 85, 247, 0.1);
+  border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.ai-modal .translate-modal-close {
+  background: rgba(168, 85, 247, 0.25);
+}
+
+.ai-modal .translate-modal-close:hover {
+  background: rgba(168, 85, 247, 0.4);
+}
+
+.ai-modal .translate-modal-tabs {
+  border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.ai-modal .translate-modal-tab {
+  color: #94a3b8;
+}
+
+.ai-modal .translate-modal-tab:hover {
+  background: rgba(168, 85, 247, 0.1);
+  color: #d8b4fe;
+}
+
+.ai-modal .translate-modal-tab.active {
+  background: rgba(168, 85, 247, 0.15);
+  color: #a855f7;
+  border-bottom: 2px solid #a855f7;
+}
+
+/* ======================= */
+/* 锁屏样式 */
+/* ======================= */
+.lock-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lock-screen-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px) brightness(0.6);
+  transform: scale(1.1);
+}
+
+.lock-screen-content {
+  position: relative;
+  z-index: 1;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  border-radius: 24px;
+  padding: 3rem 4rem;
+  text-align: center;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+  min-width: 360px;
+}
+
+.lock-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: rgba(129, 140, 248, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #818cf8;
+}
+
+.lock-screen-content h2 {
+  color: #f1f5f9;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.lock-hint {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.lock-input-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.lock-input {
+  flex: 1;
+  padding: 0.9rem 1.2rem;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  border-radius: 12px;
+  color: #f1f5f9;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.lock-input:focus {
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+}
+
+.lock-input.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.lock-input::placeholder {
+  color: #64748b;
+}
+
+.lock-unlock-btn {
+  padding: 0.9rem 1.8rem;
+  background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lock-unlock-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+}
+
+.lock-unlock-btn:active {
+  transform: translateY(0);
+}
+
+.lock-error {
+  color: #ef4444;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.lock-default-hint {
+  color: #64748b;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}
+
+/* 锁定按钮样式 */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lock-btn {
+  height: 36px;
+  background: rgba(129, 140, 248, 0.2);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  border-radius: 8px;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  padding: 5px 10px;
+}
+
+.lock-btn:hover {
+  background: rgba(129, 140, 248, 0.35);
+  color: #e2e8f0;
+  transform: scale(1.05);
+}

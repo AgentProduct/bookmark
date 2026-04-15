@@ -3,6 +3,10 @@ import "./App.css";
 import * as d3 from "d3";
 import googleIcon from "./assets/google-favicon.ico";
 import youdaoIcon from "./assets/youdao-favicon.png";
+import lockBg from './assets/bg.webp'
+import chatgptIcon from '/public/icons/chatgpt-eex17e9e.ico'
+import grokIcon from '/public/icons/grok-favicon-light.png'
+import geminiIcon from '/public/icons/gemini-favicon.svg'
 
 
 // 声明全局config变量
@@ -64,7 +68,7 @@ const GitHubRepoSidebar = () => {
   const [hasMore, setHasMore] = useState(true);
   const [keyword, setKeyword] = useState("");
   const [mode, setMode] = useState<"hot" | "search">("hot");
-  
+
   // 我们需要监听侧边栏的滚动，而不是仓库列表本身
   const sidebarRef = useRef<HTMLDivElement>(null);
   // 搜索防抖定时器ref
@@ -171,7 +175,7 @@ const GitHubRepoSidebar = () => {
     setPage(1);
     setHasMore(true);
     setRepos([]);
-    
+
     const days = Math.floor(Math.random() * 365) + 30;
     const d = new Date();
     d.setDate(d.getDate() - days);
@@ -199,7 +203,7 @@ const GitHubRepoSidebar = () => {
       setPage(1);
       setHasMore(true);
       setRepos([]);
-      
+
       fetchRepos(
         `https://api.github.com/search/repositories?q=${encodeURIComponent(
           keyword
@@ -217,7 +221,7 @@ const GitHubRepoSidebar = () => {
 
       const element = sidebarRef.current;
       if (!element) return;
-      
+
       const { scrollTop, scrollHeight, clientHeight } = element;
 
       // 当滚动到底部附近（距离底部50px）时触发加载更多
@@ -240,7 +244,7 @@ const GitHubRepoSidebar = () => {
       fetchHotRepos();
       hasFetchedHotRepos.current = true;
     }
-    
+
     // 组件卸载时清除防抖定时器
     return () => {
       if (searchDebounceRef.current) {
@@ -356,8 +360,7 @@ const BookmarkCard = memo(function BookmarkCard({
               style={{ backgroundColor: bgColor }}
               src={
                 icon ||
-                `https://www.google.com/s2/favicons?domain=${
-                  new URL(url).hostname
+                `https://www.google.com/s2/favicons?domain=${new URL(url).hostname
                 }&sz=32`
               }
               alt={`${title} logo`}
@@ -415,8 +418,50 @@ const App: React.FC = () => {
   const [activeTranslateTab, setActiveTranslateTab] = useState("baidu");
   const translateModalRef = useRef<HTMLDivElement>(null);
   const translateIconRef = useRef<HTMLButtonElement>(null);
+
+  // AI弹框状态
+  const [showAIModal, setShowAIModal] = useState(false);
+  const [activeAITab, setActiveAITab] = useState("doubao");
+  const aiIconRef = useRef<HTMLButtonElement>(null);
+  const aiModalRef = useRef<HTMLDivElement>(null);
+
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [isDraggingAI, setIsDraggingAI] = useState(false);
+  const [aiDragOffset, setAIDragOffset] = useState({ x: 0, y: 0 });
+
+  // 锁屏状态 - 从localStorage读取初始值
+  const [isLocked, setIsLocked] = useState(() => {
+    const stored = localStorage.getItem("app_locked");
+    return stored === null || stored === "true";
+  });
+  const [lockPassword, setLockPassword] = useState("");
+  const [lockError, setLockError] = useState(false);
+  const [lockBgUrl] = useState(config?.lockBackground || lockBg);
+
+  // 解锁函数
+  const handleUnlock = () => {
+    const storedPassword = localStorage.getItem("app_password") || "123456";
+    if (lockPassword === storedPassword) {
+      setIsLocked(false);
+      localStorage.setItem("app_locked", "false");
+      setLockPassword("");
+      setLockError(false);
+    } else {
+      setLockError(true);
+    }
+  };
+
+  // 锁定函数
+  const handleLock = () => {
+    setIsLocked(true);
+    localStorage.setItem("app_locked", "true");
+  };
+
+  // 设置密码函数
+  const handleSetPassword = (newPassword: string) => {
+    localStorage.setItem("app_password", newPassword);
+  };
 
   // 处理百度搜索
   const handleBaiduSearch = (e: React.FormEvent) => {
@@ -485,10 +530,14 @@ const App: React.FC = () => {
     setShowTranslateModal(!showTranslateModal);
   };
 
+  const toggleAIModal = () => {
+    setShowAIModal(!showAIModal);
+  };
+
   // 翻译弹框拖拽功能
   const handleDragStart = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!translateModalRef.current) return;
-    
+
     setIsDragging(true);
     const rect = translateModalRef.current.getBoundingClientRect();
     setDragOffset({
@@ -499,19 +548,19 @@ const App: React.FC = () => {
 
   const handleDrag = (e: MouseEvent) => {
     if (!isDragging || !translateModalRef.current) return;
-    
+
     const newX = e.clientX - dragOffset.x;
     const newY = e.clientY - dragOffset.y;
-    
+
     // 确保弹框不会超出视口
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     const modalWidth = translateModalRef.current.offsetWidth;
     const modalHeight = translateModalRef.current.offsetHeight;
-    
+
     const finalX = Math.max(0, Math.min(newX, viewportWidth - modalWidth));
     const finalY = Math.max(0, Math.min(newY, viewportHeight - modalHeight));
-    
+
     translateModalRef.current.style.left = `${finalX}px`;
     translateModalRef.current.style.top = `${finalY}px`;
   };
@@ -520,18 +569,59 @@ const App: React.FC = () => {
     setIsDragging(false);
   };
 
+  // AI弹框拖拽功能
+  const handleAIDragStart = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!aiModalRef.current) return;
+
+    setIsDraggingAI(true);
+    const rect = aiModalRef.current.getBoundingClientRect();
+    setAIDragOffset({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
+
+  const handleAIDrag = (e: MouseEvent) => {
+    if (!isDraggingAI || !aiModalRef.current) return;
+
+    const newX = e.clientX - aiDragOffset.x;
+    const newY = e.clientY - aiDragOffset.y;
+
+    // 确保弹框不会超出视口
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const modalWidth = aiModalRef.current.offsetWidth;
+    const modalHeight = aiModalRef.current.offsetHeight;
+
+    const finalX = Math.max(0, Math.min(newX, viewportWidth - modalWidth));
+    const finalY = Math.max(0, Math.min(newY, viewportHeight - modalHeight));
+
+    aiModalRef.current.style.left = `${finalX}px`;
+    aiModalRef.current.style.top = `${finalY}px`;
+  };
+
+  const handleAIDragEnd = () => {
+    setIsDraggingAI(false);
+  };
+
   // 添加拖拽事件监听
   useEffect(() => {
     if (isDragging) {
       document.addEventListener('mousemove', handleDrag);
       document.addEventListener('mouseup', handleDragEnd);
     }
-    
+    if (isDraggingAI) {
+      document.addEventListener('mousemove', handleAIDrag);
+      document.addEventListener('mouseup', handleAIDragEnd);
+    }
+
     return () => {
       document.removeEventListener('mousemove', handleDrag);
       document.removeEventListener('mouseup', handleDragEnd);
+      document.removeEventListener('mousemove', handleAIDrag);
+      document.removeEventListener('mouseup', handleAIDragEnd);
     };
-  }, [isDragging, dragOffset]);
+  }, [isDragging, dragOffset, isDraggingAI, aiDragOffset]);
 
   // 分类切换时触发网格动画
   useEffect(() => {
@@ -621,15 +711,15 @@ const App: React.FC = () => {
           .x((d) => d[0])
           .y((d) => d[1])
           .curve(d3.curveBasis)(
-          Array.from(
-            { length: 100 },
-            (_, i) =>
-              [
-                (i / 99) * width,
-                100 + Math.sin(i / 10 + wave.offset) * wave.amplitude,
-              ] as [number, number]
-          )
-        );
+            Array.from(
+              { length: 100 },
+              (_, i) =>
+                [
+                  (i / 99) * width,
+                  100 + Math.sin(i / 10 + wave.offset) * wave.amplitude,
+                ] as [number, number]
+            )
+          );
 
         wave.path.attr("d", pathData);
       });
@@ -670,228 +760,444 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="app-container">
-      {/* 侧边栏 */}
-      <aside className="sidebar">
-        <div className="sidebar-header">
-          <h2>书签分类</h2>
+    <>
+      {/* 锁屏界面 */}
+      {isLocked && (
+        <div className="lock-screen">
           <div
-            className="user-avatar"
-            onClick={() =>
-              window.open("https://zhengjialux.github.io/", "_blank")
-            }
-          >
-            <img
-              src="https://avatars.githubusercontent.com/u/20078022?v=4"
-              alt="用户头像"
-            />
-          </div>
-        </div>
-
-        <ul className="category-list">
-          {categories.map((category) => {
-            const count =
-              category === "all"
-                ? bookmarks.length
-                : category === "Mark"
-                ? bookmarks.filter((b) => b.Mark === true).length
-                : bookmarks.filter((b) => b.category === category).length;
-
-            return (
-              <li
-                key={category}
-                className={`category-item ${
-                  activeCategory === category ? "active" : ""
-                }`}
-                onClick={() => setActiveCategory(category)}
-              >
-                <span className="category-icon">
-                  {getCategoryIcon(category)}
-                </span>
-                <span className="category-text">
-                  {category === "all" ? "全部书签" : category}
-                </span>
-                <span className="category-count">({count})</span>
-              </li>
-            );
-          })}
-        </ul>
-      </aside>
-
-      {/* 主内容区 */}
-      <main className="bookmark-content" ref={contentRef}>
-        {/* D3粒子动画 */}
-        <svg ref={backgroundRef} className="content-animation"></svg>
-        <div className="content-container">
-          <div className="content-header">
-          <div className="header-left">
-            <h1>
-              {activeCategory === "all" ? "全部书签" : activeCategory} (
-              {filteredBookmarks.length})
-            </h1>
-            <div className="search-boxes">
-              <div className="search-container">
-                <input
-                  type="text"
-                  placeholder="搜索书签标题..."
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                  className="search-input"
-                  aria-label="搜索书签"
-                />
-                {searchTerm && (
-                  <button
-                    className="clear-search-btn"
-                    onClick={clearSearch}
-                    aria-label="清除搜索"
-                  >
-                    ×
-                  </button>
-                )}
-              </div>
-              <form className="search-container baidu-search-container" onSubmit={handleBaiduSearch}>
-                <img
-                  src="https://www.baidu.com/favicon.ico"
-                  alt="百度图标"
-                  className="baidu-icon-image"
-                />
-                <input
-                  type="text"
-                  placeholder="百度搜索..."
-                  value={baiduSearchTerm}
-                  onChange={(e) => setBaiduSearchTerm(e.target.value)}
-                  className="search-input"
-                  aria-label="百度搜索"
-                />
-                <button
-                  type="submit"
-                  className="search-submit-btn"
-                  aria-label="百度搜索"
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </button>
-              </form>
-              <form className="search-container google-search-container" onSubmit={handleGoogleSearch}>
-                <img
-                  src={googleIcon}
-                  alt="Google图标"
-                  className="google-icon-image"
-                />
-                <input
-                  type="text"
-                  placeholder="Google搜索..."
-                  value={googleSearchTerm}
-                  onChange={(e) => setGoogleSearchTerm(e.target.value)}
-                  className="search-input"
-                  aria-label="Google搜索"
-                />
-                <button
-                  type="submit"
-                  className="search-submit-btn"
-                  aria-label="Google搜索"
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </button>
-              </form>
-              <button 
-                className="translate-icon-btn"
-                onClick={toggleTranslateModal}
-                ref={translateIconRef}
-                aria-label="打开翻译工具"
-                title="打开翻译工具"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                  <polyline points="2 17 12 22 22 17"></polyline>
-                  <polyline points="2 12 12 17 22 12"></polyline>
-                </svg>
+            className="lock-screen-bg"
+            style={{ backgroundImage: `url(${lockBgUrl})` }}
+          ></div>
+          <div className="lock-screen-content">
+            <div className="lock-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h2>书签已锁定</h2>
+            <p className="lock-hint">输入密码解锁</p>
+            <div className="lock-input-group">
+              <input
+                type="password"
+                className={`lock-input ${lockError ? "error" : ""}`}
+                placeholder="请输入密码"
+                value={lockPassword}
+                onChange={(e) => {
+                  setLockPassword(e.target.value);
+                  setLockError(false);
+                }}
+                onKeyDown={(e) => e.key === "Enter" && handleUnlock()}
+                autoFocus
+              />
+              <button className="lock-unlock-btn" onClick={handleUnlock}>
+                解锁
               </button>
             </div>
-          </div>
-
-            <button
-              className={`compact-toggle ${compactMode ? "active" : ""}`}
-              onClick={() => setCompactMode((v) => !v)}
-              aria-label="切换紧凑/正常视图"
-            >
-              {compactMode ? "🌐" : "📋"}
-            </button>
-          </div>
-
-          <div
-            className={`bookmark-grid ${compactMode ? "compact" : ""} ${
-              isAnimating ? "fade-in" : ""
-            }`}
-          >
-            {filteredBookmarks.length > 0 ? (
-              filteredBookmarks.map((b, i) => <BookmarkCard key={i} {...b} />)
-            ) : (
-              <div className="empty-state">该分类下暂无书签</div>
-            )}
-          </div>
-        </div>
-      </main>
-
-      {/* GitHub仓库侧边栏 */}
-      <GitHubRepoSidebar />
-
-      {/* 翻译弹框 */}
-      {showTranslateModal && (
-        <div className="translate-modal" ref={translateModalRef}>
-          <div className="translate-modal-header" onMouseDown={handleDragStart}>
-            <h3>翻译工具</h3>
-            <button 
-              className="translate-modal-close" 
-              onClick={toggleTranslateModal}
-              aria-label="关闭翻译工具"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-          </div>
-          <div className="translate-modal-tabs">
-            <button 
-              className={`translate-modal-tab ${activeTranslateTab === "baidu" ? "active" : ""}`}
-              onClick={() => setActiveTranslateTab("baidu")}
-            >
-              <img src="https://www.baidu.com/favicon.ico" alt="百度翻译" className="tab-icon" />
-              百度翻译
-            </button>
-            <button 
-              className={`translate-modal-tab ${activeTranslateTab === "youdao" ? "active" : ""}`}
-              onClick={() => setActiveTranslateTab("youdao")}
-            >
-              <img src={youdaoIcon} alt="有道翻译" className="tab-icon" />
-              有道翻译
-            </button>
-          </div>
-          <div className="translate-modal-content">
-            {activeTranslateTab === "youdao" && (
-              <iframe 
-                src="https://fanyi.youdao.com/#/AITranslate?keyfrom=fanyiweb_tab" 
-                title="有道翻译"
-                frameBorder="0"
-              ></iframe>
-            )}
-            {activeTranslateTab === "baidu" && (
-              <iframe 
-                src="https://fanyi.baidu.com/" 
-                title="百度翻译"
-                frameBorder="0"
-              ></iframe>
-            )}
+            {lockError && <p className="lock-error">密码错误，请重试</p>}
+            <p className="lock-default-hint">默认密码: 1~6</p>
           </div>
         </div>
       )}
-    </div>
+
+      <div className="app-container">
+        {/* 侧边栏 */}
+        <aside className="sidebar">
+          <div className="sidebar-header">
+            <h2>书签分类</h2>
+            <div
+              className="user-avatar"
+              onClick={() =>
+                window.open("https://zhengjialux.github.io/", "_blank")
+              }
+            >
+              <img
+                src="https://avatars.githubusercontent.com/u/20078022?v=4"
+                alt="用户头像"
+              />
+            </div>
+            <button
+              className="lock-btn"
+              onClick={handleLock}
+              title="锁定书签"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+              </svg>
+            </button>
+          </div>
+
+          <ul className="category-list">
+            {categories.map((category) => {
+              const count =
+                category === "all"
+                  ? bookmarks.length
+                  : category === "Mark"
+                    ? bookmarks.filter((b) => b.Mark === true).length
+                    : bookmarks.filter((b) => b.category === category).length;
+
+              return (
+                <li
+                  key={category}
+                  className={`category-item ${activeCategory === category ? "active" : ""
+                    }`}
+                  onClick={() => setActiveCategory(category)}
+                >
+                  <span className="category-icon">
+                    {getCategoryIcon(category)}
+                  </span>
+                  <span className="category-text">
+                    {category === "all" ? "全部书签" : category}
+                  </span>
+                  <span className="category-count">({count})</span>
+                </li>
+              );
+            })}
+          </ul>
+        </aside>
+
+        {/* 主内容区 */}
+        <main className="bookmark-content" ref={contentRef}>
+          {/* D3粒子动画 */}
+          <svg ref={backgroundRef} className="content-animation"></svg>
+          <div className="content-container">
+            <div className="content-header">
+              <div className="header-left">
+                <h1>
+                  {activeCategory === "all" ? "全部书签" : activeCategory} (
+                  {filteredBookmarks.length})
+                </h1>
+                <div className="search-boxes">
+                  <div className="search-container">
+                    <input
+                      type="text"
+                      placeholder="搜索书签标题..."
+                      value={searchTerm}
+                      onChange={handleSearchChange}
+                      className="search-input"
+                      aria-label="搜索书签"
+                    />
+                    {searchTerm && (
+                      <button
+                        className="clear-search-btn"
+                        onClick={clearSearch}
+                        aria-label="清除搜索"
+                      >
+                        ×
+                      </button>
+                    )}
+                  </div>
+                  <form className="search-container baidu-search-container" onSubmit={handleBaiduSearch}>
+                    <img
+                      src="https://www.baidu.com/favicon.ico"
+                      alt="百度图标"
+                      className="baidu-icon-image"
+                    />
+                    <input
+                      type="text"
+                      placeholder="百度搜索..."
+                      value={baiduSearchTerm}
+                      onChange={(e) => setBaiduSearchTerm(e.target.value)}
+                      className="search-input"
+                      aria-label="百度搜索"
+                    />
+                    <button
+                      type="submit"
+                      className="search-submit-btn"
+                      aria-label="百度搜索"
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                    </button>
+                  </form>
+                  <form className="search-container google-search-container" onSubmit={handleGoogleSearch}>
+                    <img
+                      src={googleIcon}
+                      alt="Google图标"
+                      className="google-icon-image"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Google搜索..."
+                      value={googleSearchTerm}
+                      onChange={(e) => setGoogleSearchTerm(e.target.value)}
+                      className="search-input"
+                      aria-label="Google搜索"
+                    />
+                    <button
+                      type="submit"
+                      className="search-submit-btn"
+                      aria-label="Google搜索"
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                    </button>
+                  </form>
+                  <button
+                    className="translate-icon-btn"
+                    onClick={toggleTranslateModal}
+                    ref={translateIconRef}
+                    aria-label="打开翻译工具"
+                    title="打开翻译工具"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                      <polyline points="2 17 12 22 22 17"></polyline>
+                      <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                  </button>
+                  <button
+                    className="translate-icon-btn ai-icon-btn"
+                    onClick={toggleAIModal}
+                    ref={aiIconRef}
+                    aria-label="打开AI工具"
+                    title="打开AI工具"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 8V4H8"></path>
+                      <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect>
+                      <path d="M8 10h.01M12 10h.01M16 10h.01M8 14h8M8 18h5"></path>
+                    </svg>
+                  </button>
+                  {/* AI通道 */}
+                </div>
+              </div>
+
+              <button
+                className={`compact-toggle ${compactMode ? "active" : ""}`}
+                onClick={() => setCompactMode((v) => !v)}
+                aria-label="切换紧凑/正常视图"
+              >
+                {compactMode ? "🌐" : "📋"}
+              </button>
+            </div>
+
+            <div
+              className={`bookmark-grid ${compactMode ? "compact" : ""} ${isAnimating ? "fade-in" : ""
+                }`}
+            >
+              {filteredBookmarks.length > 0 ? (
+                filteredBookmarks.map((b, i) => <BookmarkCard key={i} {...b} />)
+              ) : (
+                <div className="empty-state">该分类下暂无书签</div>
+              )}
+            </div>
+          </div>
+        </main>
+
+        {/* GitHub仓库侧边栏 */}
+        <GitHubRepoSidebar />
+
+        {/* 翻译弹框 */}
+        {showTranslateModal && (
+          <div className="translate-modal" ref={translateModalRef}>
+            <div className="translate-modal-header" onMouseDown={handleDragStart}>
+              <h3>翻译工具</h3>
+              <button
+                className="translate-modal-close"
+                onClick={toggleTranslateModal}
+                aria-label="关闭翻译工具"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+            <div className="translate-modal-tabs">
+              <button
+                className={`translate-modal-tab ${activeTranslateTab === "baidu" ? "active" : ""}`}
+                onClick={() => setActiveTranslateTab("baidu")}
+              >
+                <img src="https://www.baidu.com/favicon.ico" alt="百度翻译" className="tab-icon" />
+                百度翻译
+              </button>
+              <button
+                className={`translate-modal-tab ${activeTranslateTab === "youdao" ? "active" : ""}`}
+                onClick={() => setActiveTranslateTab("youdao")}
+              >
+                <img src={youdaoIcon} alt="有道翻译" className="tab-icon" />
+                有道翻译
+              </button>
+              <button
+                className={`translate-modal-tab ${activeTranslateTab === "google" ? "active" : ""}`}
+                onClick={() => setActiveTranslateTab("google")}
+              >
+                <img src={googleIcon} alt="谷歌翻译" className="tab-icon" />
+                谷歌翻译
+              </button>
+            </div>
+            <div className="translate-modal-content">
+              {activeTranslateTab === "youdao" && (
+                <iframe
+                  src="https://fanyi.youdao.com/#/AITranslate?keyfrom=fanyiweb_tab"
+                  title="有道翻译"
+                  frameBorder="0"
+                ></iframe>
+              )}
+              {activeTranslateTab === "baidu" && (
+                <iframe
+                  src="https://fanyi.baidu.com/"
+                  title="百度翻译"
+                  frameBorder="0"
+                ></iframe>
+              )}
+              {activeTranslateTab === "google" && (
+                <iframe
+                  src="https://translate.google.com.hk/"
+                  title="谷歌翻译"
+                  frameBorder="0"
+                ></iframe>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* AI弹框 */}
+        {showAIModal && (
+          <div className="translate-modal ai-modal" ref={aiModalRef}>
+            <div className="translate-modal-header" onMouseDown={handleAIDragStart}>
+              <h3>AI助手</h3>
+              <button
+                className="translate-modal-close"
+                onClick={toggleAIModal}
+                aria-label="关闭AI助手"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+            <div className="translate-modal-tabs">
+              <button
+                className={`translate-modal-tab ${activeAITab === "doubao" ? "active" : ""}`}
+                onClick={() => setActiveAITab("doubao")}
+              >
+                <img src="https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/doubao/chat/favicon.png" alt="豆包" className="tab-icon" />
+
+                豆包
+              </button>
+              <button
+                className={`translate-modal-tab ${activeAITab === "kimi" ? "active" : ""}`}
+                onClick={() => setActiveAITab("kimi")}
+              >
+                <img src="https://kimi.moonshot.cn/favicon.ico" alt="Kimi" className="tab-icon" />
+                Kimi
+              </button>
+              <button
+                className={`translate-modal-tab ${activeAITab === "yuanbao" ? "active" : ""}`}
+                onClick={() => setActiveAITab("yuanbao")}
+              >
+                <img src="https://static.yuanbao.tencent.com/m/yuanbao-web/favicon_new@32.png" alt="元宝" className="tab-icon" />
+                元宝
+              </button>
+              <button
+                className={`translate-modal-tab ${activeAITab === "qwen" ? "active" : ""}`}
+                onClick={() => setActiveAITab("qwen")}
+              >
+                <img src="https://g.alicdn.com/qwenweb/qwen-ai-fe/0.0.4/favicon.ico" alt="千问" className="tab-icon" />
+                千问
+              </button>
+              <button
+                className={`translate-modal-tab ${activeAITab === "deepseek" ? "active" : ""}`}
+                onClick={() => setActiveAITab("deepseek")}
+              >
+                <img src="https://www.deepseek.com/favicon.ico" alt="DeepSeek" className="tab-icon" />
+                DeepSeek
+              </button>
+              <button
+                className={`translate-modal-tab ${activeAITab === "grok" ? "active" : ""}`}
+                onClick={() => setActiveAITab("grok")}
+              >
+                <img src={grokIcon} alt="Grok" className="tab-icon" />
+
+                Grok
+              </button>
+              <button
+                className={`translate-modal-tab ${activeAITab === "chatgpt" ? "active" : ""}`}
+                onClick={() => setActiveAITab("chatgpt")}
+              >
+                <img src={chatgptIcon} alt="ChatGPT" className="tab-icon" />
+
+                ChatGPT
+              </button>
+               <button
+                className={`translate-modal-tab ${activeAITab === "gemini" ? "active" : ""}`}
+                onClick={() => setActiveAITab("gemini")}
+              >
+                <img src={geminiIcon} alt="Gemini" className="tab-icon" />
+
+                Gemini
+              </button>
+            </div>
+            <div className="translate-modal-content">
+              {activeAITab === "kimi" && (
+                <iframe
+                  src="https://kimi.moonshot.cn/"
+                  title="Kimi AI"
+                  frameBorder="0"
+                ></iframe>
+              )}
+              {activeAITab === "yuanbao" && (
+                <iframe
+                  src="https://yuanbao.tencent.com/chat/"
+                  title="元宝 AI"
+                  frameBorder="0"
+                ></iframe>
+              )}
+              {activeAITab === "doubao" && (
+                <iframe
+                  src="https://www.doubao.com/chat/"
+                  title="豆包 AI"
+                  frameBorder="0"
+                ></iframe>
+              )}
+              {activeAITab === "qwen" && (
+                <iframe
+                  src="https://www.qianwen.com/"
+                  title="千问 AI"
+                  frameBorder="0"
+                ></iframe>
+              )}
+              {activeAITab === "deepseek" && (
+                <iframe
+                  src="https://chat.deepseek.com/"
+                  title="DeepSeek AI"
+                  frameBorder="0"
+                ></iframe>
+              )}
+              {activeAITab === "grok" && (
+                <iframe
+                  src="https://grok.com/"
+                  title="Grok"
+                  frameBorder="0"
+                ></iframe>
+              )}
+              {activeAITab === "chatgpt" && (
+                <iframe
+                  src="https://chatgpt.com/"
+                  title="ChatGPT"
+                  frameBorder="0"
+                ></iframe>
+              )}
+              {activeAITab === "gemini" && (
+                <iframe
+                  src="https://gemini.google.com/app"
+                  title="Gemini"
+                  frameBorder="0"
+                ></iframe>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
