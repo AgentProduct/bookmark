@@ -459,9 +459,9 @@ const App: React.FC = () => {
   };
 
   // 设置密码函数
-  const handleSetPassword = (newPassword: string) => {
-    localStorage.setItem("app_password", newPassword);
-  };
+  // const handleSetPassword = (newPassword: string) => {
+  //   localStorage.setItem("app_password", newPassword);
+  // };
 
   // 处理百度搜索
   const handleBaiduSearch = (e: React.FormEvent) => {
