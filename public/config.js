@@ -1995,6 +1995,13 @@ const config = {
       url: "https://hermes-agent.nousresearch.com/",
       category: "AI",
       icon: "",
+    },
+    {
+      title: "Skill Hub",
+      url: "https://skillhub.cn/",
+      category: "AI",
+      icon: "",
+      Mark: true,
     }
   ],
   categoryIcons: {
