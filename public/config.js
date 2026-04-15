@@ -2002,6 +2002,13 @@ const config = {
       category: "AI",
       icon: "",
       Mark: true,
+    },
+    {
+      title: "Comfy UI",
+      url: "https://www.comfy.org/",
+      category: "AI",
+      icon: "",
+      Mark: true,
     }
   ],
   categoryIcons: {
