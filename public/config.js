@@ -2049,4 +2049,5 @@ const config = {
     摄影: "📷",
     GitHub: "👾"
   },
+  lockBackground: 'false'
 };
