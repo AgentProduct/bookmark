@@ -2009,6 +2009,12 @@ const config = {
       category: "AI",
       icon: "",
       Mark: true,
+    },
+    {
+      title: "SQLite",
+      url: "https://www.sqlite.org/",
+      category: "数据库",
+      icon: "",
     }
   ],
   categoryIcons: {
