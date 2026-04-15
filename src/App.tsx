@@ -769,7 +769,7 @@ const App: React.FC = () => {
           />
           <div
             className="lock-screen-bg"
-            style={{ backgroundImage: `url(${lockBgUrl})` }}
+            style={lockBgUrl ? { backgroundImage: `url(${lockBgUrl})` } : {}}
           />
           <div className="lock-screen-content">
             <div className="lock-icon">
