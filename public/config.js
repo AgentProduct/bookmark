@@ -2002,7 +2002,7 @@ const config = {
       icon: "",
     },
     {
-      title: "摩塔社区",
+      title: "魔塔社区",
       url: "https://modelscope.cn/home",
       category: "大模型",
       icon: "",
