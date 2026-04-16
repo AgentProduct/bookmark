@@ -38,6 +38,30 @@ const config = {
       icon: "",
     },
     {
+      title: "百炼控制台",
+      url: "https://modelstudio.console.alibabacloud.com/",
+      category: "大模型",
+      icon: "",
+    },
+    {
+      title: "deepseek 控制台",
+      url: "https://platform.deepseek.com/",
+      category: "大模型",
+      icon: "",
+    },
+    {
+      title: "腾讯混元",
+      url: "https://hunyuan.tencent.com/",
+      category: "大模型",
+      icon: "",
+    },
+    {
+      title: "腾讯云模型市场",
+      url: "https://console.cloud.tencent.com/tokenhub/models",
+      category: "大模型",
+      icon: "",
+    },
+    {
       title: "React Docs",
       url: "https://zh-hans.react.dev",
       category: "React",
@@ -1924,7 +1948,7 @@ const config = {
     {
       title: "Hugging Face",
       url: "https://huggingface.co/",
-      category: "社区",
+      category: "大模型",
       icon: "",
       Mark: true,
     },
@@ -1978,9 +2002,9 @@ const config = {
       icon: "",
     },
     {
-      title: "魔塔社区",
+      title: "摩塔社区",
       url: "https://modelscope.cn/home",
-      category: "社区",
+      category: "大模型",
       icon: "",
       Mark: true,
     },
@@ -2018,6 +2042,7 @@ const config = {
     }
   ],
   categoryIcons: {
+    大模型: "🧠",
     视频: "🎬",
     音乐: "🎵",
     工具: "🔧",
