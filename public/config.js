@@ -64,7 +64,7 @@ const config = {
     {
       title: "React Docs",
       url: "https://zh-hans.react.dev",
-      category: "React",
+      category: "未来趋势",
       icon: "https://zh-hans.react.dev/favicon-32x32.png",
       Mark: false,
     },
@@ -78,7 +78,7 @@ const config = {
     {
       title: "TypeScript Docs",
       url: "https://www.typescriptlang.org",
-      category: "文档",
+      category: "未来趋势",
       icon: "https://www.typescriptlang.org/favicon-32x32.png",
       Mark: false,
     },
@@ -104,7 +104,7 @@ const config = {
     {
       title: "Node.js",
       url: "https://nodejs.org/docs/latest/api/",
-      category: "Node.js",
+      category: "未来趋势",
       icon: "https://nodejs.org/static/images/favicons/favicon.png",
       Mark: false,
     },
@@ -125,14 +125,14 @@ const config = {
     {
       title: "Nginx",
       url: "https://nginx.org/en/docs/",
-      category: "环境",
+      category: "未来趋势",
       icon: "https://nginx.org/favicon.ico",
       Mark: false,
     },
     {
       title: "Docker",
       url: "https://www.docker.com/",
-      category: "环境",
+      category: "未来趋势",
       icon: "https://www.docker.com/app/uploads/2024/02/cropped-docker-logo-favicon-32x32.png",
       bgColor: "#ffffff",
       Mark: false,
@@ -140,7 +140,7 @@ const config = {
     {
       title: "uni-app",
       url: "https://uniapp.dcloud.net.cn/",
-      category: "跨终端框架",
+      category: "未来趋势",
       icon: "/icons/uni-icon.png",
       Mark: false,
     },
@@ -381,7 +381,7 @@ const config = {
     {
       title: "React Native",
       url: "https://reactnative.cn/",
-      category: "React",
+      category: "未来趋势",
       icon: "https://reactnative.cn/img/favicon.ico",
       Mark: false,
     },
@@ -426,7 +426,7 @@ const config = {
     {
       title: "Qiankun",
       url: "https://qiankun.umijs.org/zh",
-      category: "跨终端框架",
+      category: "未来趋势",
       icon: "/icons/qiankun-km0cv8vn_w500_h500.png",
       Mark: false,
     },
@@ -439,14 +439,14 @@ const config = {
     {
       title: "微信小程序",
       url: "https://mp.weixin.qq.com/",
-      category: "跨终端框架",
+      category: "未来趋势",
       icon: "/icons/wx.ico",
       Mark: false,
     },
     {
       title: "Electron",
       url: "https://www.electronjs.org/zh/",
-      category: "跨终端框架",
+      category: "未来趋势",
       icon: "https://www.electronjs.org/zh/assets/img/favicon.ico",
       Mark: false,
     },
@@ -465,7 +465,7 @@ const config = {
     {
       title: "Tauri",
       url: "https://tauri.app/zh-cn/",
-      category: "跨终端框架",
+      category: "未来趋势",
       icon: "https://tauri.app/logo.png",
     },
     {
@@ -634,7 +634,7 @@ const config = {
     {
       title: "Tailwind CSS",
       url: "https://tailwindcss.com/",
-      category: "文档",
+      category: "未来趋势",
       icon: "https://tailwindcss.com/favicons/favicon.ico",
       Mark: false,
     },
@@ -1141,7 +1141,7 @@ const config = {
     {
       title: "Go 语言文档",
       url: "https://go.dev/learn/",
-      category: "文档",
+      category: "未来趋势",
       icon: "https://go.dev/images/favicon-gopher.svg",
       Mark: false,
     },
@@ -1367,7 +1367,7 @@ const config = {
     {
       title: 'Shadcn UI',
       url: 'https://ui.shadcn.com/',
-      category: "工具",
+      category: "未来趋势",
       icon: "https://ui.shadcn.com/favicon.ico",
     },
     {
@@ -1516,13 +1516,13 @@ const config = {
     {
       title: "N8N",
       url: "https://n8n.io/",
-      category: "AI",
+      category: "未来趋势",
       icon: "",
     },
     {
       title: "OpenClaw",
       url: "https://openclaw.ai/",
-      category: "AI",
+      category: "未来趋势",
       icon: "",
     },
     {
@@ -2017,7 +2017,7 @@ const config = {
     {
       title: "Hermes Agent",
       url: "https://hermes-agent.nousresearch.com/",
-      category: "AI",
+      category: "未来趋势",
       icon: "",
     },
     {
@@ -2030,7 +2030,7 @@ const config = {
     {
       title: "Comfy UI",
       url: "https://www.comfy.org/",
-      category: "AI",
+      category: "未来趋势",
       icon: "",
       Mark: true,
     },
@@ -2046,9 +2046,59 @@ const config = {
       category: "社区",
       icon: "",
       Mark: true,
+    },
+    {
+      title: "Deno",
+      url: "https://deno.com/",
+      category: "Node.js",
+      icon: "",
+      Mark: false,
+    },
+    {
+      title: "React Spectrum",
+      url: "https://react-spectrum.adobe.com/",
+      category: "UI",
+      icon: "",
+      Mark: false,
+    },
+    {
+      title: "Fusion Design",
+      url: "https://fusion.design/pc/?themeid=2",
+      category: "UI",
+      icon: "",
+      Mark: false,
+    },
+    {
+      title: "RedwoodSDK",
+      url: "https://rwsdk.com/",
+      category: "UI",
+      icon: "",
+      Mark: false,
+    },
+    {
+      title: "Evergreen",
+      url: "https://evergreen.segment.com/",
+      category: "UI",
+      icon: "",
+      Mark: false,
+    },
+    {
+      title: "Ring UI",
+      url: "https://jetbrains.github.io/ring-ui/master/",
+      category: "UI",
+      icon: "",
+      Mark: false,
+    },
+    {
+      title: "React Components - Ant Design",
+      url: "https://github.com/react-component",
+      category: "GitHub",
+      icon: "",
+      Mark: false,
     }
   ],
   categoryIcons: {
+    未来趋势: "🔮",
     大模型: "🧠",
     视频: "🎬",
     音乐: "🎵",
