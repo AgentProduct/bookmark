@@ -2039,6 +2039,13 @@ const config = {
       url: "https://www.sqlite.org/",
       category: "数据库",
       icon: "",
+    },
+    {
+      title: "Arxiv",
+      url: "https://arxiv.org/",
+      category: "社区",
+      icon: "",
+      Mark: true,
     }
   ],
   categoryIcons: {
