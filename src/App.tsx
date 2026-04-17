@@ -1029,7 +1029,7 @@ const App: React.FC = () => {
               </button>
               <button
                 className={`translate-modal-tab ${activeTranslateTab === "google" ? "active" : ""}`}
-                onClick={() => setActiveTranslateTab("google")}
+                onClick={() => window.open("https://translate.google.com.hk/")}
               >
                 <img src={googleIcon} alt="谷歌翻译" className="tab-icon" />
                 谷歌翻译
@@ -1047,13 +1047,6 @@ const App: React.FC = () => {
                 <iframe
                   src="https://fanyi.baidu.com/"
                   title="百度翻译"
-                  frameBorder="0"
-                ></iframe>
-              )}
-              {activeTranslateTab === "google" && (
-                <iframe
-                  src="https://translate.google.com.hk/"
-                  title="谷歌翻译"
                   frameBorder="0"
                 ></iframe>
               )}
@@ -1102,21 +1095,21 @@ const App: React.FC = () => {
               </button>
               <button
                 className={`translate-modal-tab ${activeAITab === "qwen" ? "active" : ""}`}
-                onClick={() => setActiveAITab("qwen")}
+                onClick={() => window.open("https://www.qianwen.com/")}
               >
                 <img src="https://g.alicdn.com/qwenweb/qwen-ai-fe/0.0.4/favicon.ico" alt="千问" className="tab-icon" />
                 千问
               </button>
               <button
                 className={`translate-modal-tab ${activeAITab === "deepseek" ? "active" : ""}`}
-                onClick={() => setActiveAITab("deepseek")}
+                onClick={() => window.open("https://chat.deepseek.com/")}
               >
                 <img src="https://www.deepseek.com/favicon.ico" alt="DeepSeek" className="tab-icon" />
                 DeepSeek
               </button>
               <button
                 className={`translate-modal-tab ${activeAITab === "grok" ? "active" : ""}`}
-                onClick={() => setActiveAITab("grok")}
+                onClick={() => window.open("https://grok.com/")}
               >
                 <img src={grokIcon} alt="Grok" className="tab-icon" />
 
@@ -1124,7 +1117,7 @@ const App: React.FC = () => {
               </button>
               <button
                 className={`translate-modal-tab ${activeAITab === "chatgpt" ? "active" : ""}`}
-                onClick={() => setActiveAITab("chatgpt")}
+                onClick={() => window.open("https://chatgpt.com/")}
               >
                 <img src={chatgptIcon} alt="ChatGPT" className="tab-icon" />
 
@@ -1132,7 +1125,7 @@ const App: React.FC = () => {
               </button>
                <button
                 className={`translate-modal-tab ${activeAITab === "gemini" ? "active" : ""}`}
-                onClick={() => setActiveAITab("gemini")}
+                onClick={() => window.open("https://gemini.google.com/app")}
               >
                 <img src={geminiIcon} alt="Gemini" className="tab-icon" />
 
@@ -1158,41 +1151,6 @@ const App: React.FC = () => {
                 <iframe
                   src="https://www.doubao.com/chat/"
                   title="豆包 AI"
-                  frameBorder="0"
-                ></iframe>
-              )}
-              {activeAITab === "qwen" && (
-                <iframe
-                  src="https://www.qianwen.com/"
-                  title="千问 AI"
-                  frameBorder="0"
-                ></iframe>
-              )}
-              {activeAITab === "deepseek" && (
-                <iframe
-                  src="https://chat.deepseek.com/"
-                  title="DeepSeek AI"
-                  frameBorder="0"
-                ></iframe>
-              )}
-              {activeAITab === "grok" && (
-                <iframe
-                  src="https://grok.com/"
-                  title="Grok"
-                  frameBorder="0"
-                ></iframe>
-              )}
-              {activeAITab === "chatgpt" && (
-                <iframe
-                  src="https://chatgpt.com/"
-                  title="ChatGPT"
-                  frameBorder="0"
-                ></iframe>
-              )}
-              {activeAITab === "gemini" && (
-                <iframe
-                  src="https://gemini.google.com/app"
-                  title="Gemini"
                   frameBorder="0"
                 ></iframe>
               )}
