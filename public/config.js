@@ -2137,6 +2137,13 @@ const config = {
       category: "Go",
       icon: "",
       Mark: false,
+    },
+    {
+      title: "Iconfont",
+      url: "https://www.iconfont.cn/",
+      category: "UI",
+      icon: "",
+      Mark: false,
     }
   ],
   categoryIcons: {
