@@ -2144,6 +2144,18 @@ const config = {
       category: "UI",
       icon: "",
       Mark: false,
+    },
+    {
+      title: "Superpowers",
+      url: "https://github.com/obra/superpowers",
+      category: "GitHub",
+      icon: "",
+    },
+    {
+      title: "Spec-Kit",
+      url: "https://github.com/github/spec-kit",
+      category: "GitHub",
+      icon: "",
     }
   ],
   categoryIcons: {
