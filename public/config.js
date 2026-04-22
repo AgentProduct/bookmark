@@ -1936,7 +1936,7 @@ const config = {
     {
       title: "火山引擎",
       url: "https://www.volcengine.com/",
-      category: "AI",
+      category: "大模型",
       icon: "",
     },
     {
