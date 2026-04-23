@@ -2174,6 +2174,12 @@ const config = {
       url: "https://www.huaweicloud.com/",
       category: "Cloud",
       icon: "",
+    },
+    {
+      title: "Windsurf",
+      url: "https://windsurf.com/",
+      category: "IDE",
+      icon: "",
     }
   ],
   categoryIcons: {
