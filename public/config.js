@@ -2170,12 +2170,6 @@ const config = {
       icon: "",
     },
     {
-      title: "百度云",
-      url: "https://www.huaweicloud.com/",
-      category: "Cloud",
-      icon: "",
-    },
-    {
       title: "华为云",
       url: "https://www.huaweicloud.com/",
       category: "Cloud",
