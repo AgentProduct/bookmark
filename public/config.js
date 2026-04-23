@@ -1936,7 +1936,7 @@ const config = {
     {
       title: "火山引擎",
       url: "https://www.volcengine.com/",
-      category: "大模型",
+      category: "Cloud",
       icon: "",
     },
     {
@@ -2155,6 +2155,24 @@ const config = {
       title: "Spec-Kit",
       url: "https://github.com/github/spec-kit",
       category: "GitHub",
+      icon: "",
+    },
+    {
+      title: "京东云",
+      url: "https://www.jdcloud.com/",
+      category: "Cloud",
+      icon: "",
+    },
+    {
+      title: "百度云",
+      url: "https://cloud.baidu.com/",
+      category: "Cloud",
+      icon: "",
+    },
+    {
+      title: "百度云",
+      url: "https://www.huaweicloud.com/",
+      category: "华为云",
       icon: "",
     }
   ],
