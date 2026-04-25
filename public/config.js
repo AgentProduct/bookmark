@@ -2180,6 +2180,18 @@ const config = {
       url: "https://windsurf.com/",
       category: "IDE",
       icon: "",
+    },
+    {
+      title: "Cursor Docs",
+      url: "https://cursor.com/cn/docs/",
+      category: "未来趋势",
+      icon: "",
+    },
+    {
+      title: "Claude Docs",
+      url: "https://claude.com/skills",
+      category: "未来趋势",
+      icon: "",
     }
   ],
   categoryIcons: {
