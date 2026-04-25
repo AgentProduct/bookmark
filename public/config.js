@@ -2192,6 +2192,12 @@ const config = {
       url: "https://claude.com/skills",
       category: "未来趋势",
       icon: "",
+    },
+    {
+      title: "Java",
+      url: "https://www.java.com/zh-CN/",
+      category: "未来趋势",
+      icon: "",
     }
   ],
   categoryIcons: {
