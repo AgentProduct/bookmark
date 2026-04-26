@@ -2198,6 +2198,12 @@ const config = {
       url: "https://www.java.com/zh-CN/",
       category: "未来趋势",
       icon: "",
+    },
+    {
+      title: "OrcaTerm",
+      url: "https://orcaterm.com/",
+      category: "工具",
+      icon: "",
     }
   ],
   categoryIcons: {
