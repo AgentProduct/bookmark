@@ -662,7 +662,7 @@ const config = {
     {
       title: "LeetCode",
       url: "https://leetcode.cn/",
-      category: "社区",
+      category: "未来趋势",
       icon: "https://leetcode.cn/favicon.ico",
       Mark: false,
     },
