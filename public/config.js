@@ -2204,6 +2204,12 @@ const config = {
       url: "https://orcaterm.com/",
       category: "工具",
       icon: "",
+    },
+    {
+      title: "GORM",
+      url: "https://gorm.io/zh_CN/docs/",
+      category: "数据库",
+      icon: "",
     }
   ],
   categoryIcons: {
