@@ -2210,6 +2210,12 @@ const config = {
       url: "https://gorm.io/zh_CN/docs/",
       category: "数据库",
       icon: "",
+    },
+    {
+      title: "Slack",
+      url: "https://slack.com/",
+      category: "社区",
+      icon: "",
     }
   ],
   categoryIcons: {
