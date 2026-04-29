@@ -2228,6 +2228,12 @@ const config = {
       url: "https://pkg.go.dev/",
       category: "社区",
       icon: "",
+    },
+    {
+      title: "Notion",
+      url: "https://www.notion.com/",
+      category: "社区",
+      icon: "",
     }
   ],
   categoryIcons: {
