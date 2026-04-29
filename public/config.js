@@ -2216,6 +2216,18 @@ const config = {
       url: "https://slack.com/",
       category: "社区",
       icon: "",
+    },
+    {
+      title: "Go Proxy",
+      url: "https://goproxy.cn/",
+      category: "社区",
+      icon: "",
+    },
+    {
+      title: "Go Packages",
+      url: "https://pkg.go.dev/",
+      category: "社区",
+      icon: "",
     }
   ],
   categoryIcons: {
