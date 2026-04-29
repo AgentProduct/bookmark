@@ -795,7 +795,7 @@ const config = {
     {
       title: "Claude",
       url: "https://claude.com/",
-      category: "IDE",
+      category: "未来趋势",
       icon: "/icons/claude-favicon.png",
     },
     {
