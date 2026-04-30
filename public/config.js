@@ -2240,6 +2240,12 @@ const config = {
       url: "https://docusaurus.io/zh-CN/",
       category: "工具",
       icon: "",
+    },
+    {
+      title: "Appflowy",
+      url: "https://appflowy.com/",
+      category: "工具",
+      icon: "",
     }
   ],
   categoryIcons: {
