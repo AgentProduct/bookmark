@@ -2234,6 +2234,12 @@ const config = {
       url: "https://www.notion.com/",
       category: "社区",
       icon: "",
+    },
+    {
+      title: "Docusaurus",
+      url: "https://docusaurus.io/zh-CN/",
+      category: "工具",
+      icon: "",
     }
   ],
   categoryIcons: {
