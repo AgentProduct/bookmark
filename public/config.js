@@ -2023,7 +2023,7 @@ const config = {
     {
       title: "Skill Hub",
       url: "https://skillhub.cn/",
-      category: "AI",
+      category: "未来趋势",
       icon: "",
       Mark: true,
     },
