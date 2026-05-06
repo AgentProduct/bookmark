@@ -2264,6 +2264,12 @@ const config = {
       url: "https://platform.moonshot.cn/",
       category: "大模型",
       icon: "",
+    },
+    {
+      title: "OpenCode",
+      url: "https://opencode.ai/",
+      category: "未来趋势",
+      icon: "",
     }
   ],
   categoryIcons: {
