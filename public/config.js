@@ -2246,6 +2246,12 @@ const config = {
       url: "https://appflowy.com/",
       category: "工具",
       icon: "",
+    },
+    {
+      title: "Skills",
+      url: "https://skills.sh/",
+      category: "未来趋势",
+      icon: "",
     }
   ],
   categoryIcons: {
