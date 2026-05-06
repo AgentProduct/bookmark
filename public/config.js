@@ -2252,6 +2252,12 @@ const config = {
       url: "https://skills.sh/",
       category: "未来趋势",
       icon: "",
+    },
+    {
+      title: "Codex Docs",
+      url: "https://developers.openai.com/codex",
+      category: "未来趋势",
+      icon: "",
     }
   ],
   categoryIcons: {
