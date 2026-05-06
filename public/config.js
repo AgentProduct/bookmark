@@ -2258,6 +2258,12 @@ const config = {
       url: "https://developers.openai.com/codex",
       category: "未来趋势",
       icon: "",
+    },
+    {
+      title: "Kimi 开放平台",
+      url: "https://platform.moonshot.cn/",
+      category: "大模型",
+      icon: "",
     }
   ],
   categoryIcons: {
