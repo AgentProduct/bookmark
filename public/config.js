@@ -2270,6 +2270,12 @@ const config = {
       url: "https://opencode.ai/",
       category: "未来趋势",
       icon: "",
+    },
+    {
+      title: "DeepSeek TUI",
+      url: "https://deepseek-tui.com/zh",
+      category: "IDE",
+      icon: "",
     }
   ],
   categoryIcons: {
