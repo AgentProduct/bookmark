@@ -2276,6 +2276,12 @@ const config = {
       url: "https://deepseek-tui.com/zh",
       category: "IDE",
       icon: "",
+    },
+    {
+      title: "智谱大模型",
+      url: "https://bigmodel.cn/",
+      category: "大模型",
+      icon: "",
     }
   ],
   categoryIcons: {
