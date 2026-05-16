@@ -341,7 +341,7 @@ const config = {
     {
       title: "Three.js",
       url: "https://threejs.org/",
-      category: "Three.js",
+      category: "小游戏",
       icon: "https://threejs.org/files/favicon_white.ico",
       Mark: false,
     },
@@ -2282,6 +2282,54 @@ const config = {
       url: "https://bigmodel.cn/",
       category: "大模型",
       icon: "",
+    },
+    {
+      title: "Cocos Creator",
+      url: "https://www.cocos.com/",
+      category: "小游戏",
+      icon: "",
+    },
+    {
+      title: "LayaAir（LayaBox）",
+      url: "https://www.layabox.com/",
+      category: "小游戏",
+      icon: "",
+    },
+    {
+      title: "Egret Engine",
+      url: "https://www.egret.com/",
+      category: "小游戏",
+      icon: "",
+    },
+    {
+      title: "Unity",
+      url: "https://unity.com/cn",
+      category: "小游戏",
+      icon: "",
+    },
+    {
+      title: "CreateJS",
+      url: "https://createjs.com/",
+      category: "小游戏",
+      icon: "",
+    },
+    {
+      title: "Phaser.js",
+      url: "https://phaser.io/",
+      category: "小游戏",
+      icon: "",
+    },
+    {
+      title: "Pix.js",
+      url: "https://pixijs.com/",
+      category: "小游戏",
+      icon: "",
+    },
+    {
+      title: "微信原生 Canvas",
+      url: "https://developers.weixin.qq.com/minigame/dev/guide/",
+      category: "小游戏",
+      icon: "",
     }
   ],
   categoryIcons: {
@@ -2317,7 +2365,8 @@ const config = {
     Mark: "⭐",
     解决方案: "💡",
     摄影: "📷",
-    GitHub: "👾"
+    GitHub: "👾",
+    小游戏: "🎮",
   },
   lockBackground: false
 };
