@@ -1738,7 +1738,7 @@ const config = {
     {
       title: "编程导航",
       url: "https://www.codefather.cn/",
-      category: "社区",
+      category: "视频",
       icon: "",
     },
     {
