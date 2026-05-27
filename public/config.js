@@ -2330,6 +2330,12 @@ const config = {
       url: "https://developers.weixin.qq.com/minigame/dev/guide/",
       category: "小游戏",
       icon: "",
+    },
+    {
+      title: "Axure",
+      url: "https://www.axure.com/",
+      category: "UI",
+      icon: "",
     }
   ],
   categoryIcons: {
