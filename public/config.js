@@ -2336,6 +2336,12 @@ const config = {
       url: "https://www.axure.com/",
       category: "UI",
       icon: "",
+    },
+    {
+      title: "Mimo",
+      url: "https://mimo.xiaomi.com/zh/",
+      category: "大模型",
+      icon: "",
     }
   ],
   categoryIcons: {
