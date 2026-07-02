@@ -860,10 +860,11 @@
 /* 翻译弹框样式 */
 .translate-modal {
   position: fixed;
-  top: 100px;
-  right: 100px;
-  width: 1600px;
-  height: 960px;
+  top: 40px;
+  left: 40px;
+  /* 宽高响应式：大屏不超过 1600x960，小屏留出 80px 总边距；初始位置由 useDraggable(centerOnMount) 居中 */
+  width: min(1600px, calc(100vw - 80px));
+  height: min(960px, calc(100vh - 80px));
   background: rgba(30, 41, 59, 0.95);
   backdrop-filter: blur(18px);
   border-radius: 16px;
@@ -988,15 +989,6 @@
 }
 
 /* 响应式调整 */
-@media (max-width: 768px) {
-  .translate-modal {
-    width: 90%;
-    height: 70vh;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
 
 .github-search {
   margin-bottom: 16px;
