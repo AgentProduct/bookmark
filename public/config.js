@@ -2394,5 +2394,10 @@ const config = {
     GitHub: "👾",
     小游戏: "🎮",
   },
-  lockBackground: false
+  lockBackground: false,
+  // GitHub Personal Access Token（可选）
+  // - 留空：走未认证请求，受 GitHub 限制为 60 次/小时/每个 IP
+  // - 填入 token：走认证请求，额度提升到 5000 次/小时
+  // ⚠️ 这是纯前端项目，token 会明文打进构建产物，务必使用最小权限、可随时吊销的 fine-grained token
+  githubToken: ""
 };
