@@ -2009,6 +2009,20 @@ const config = {
       Mark: true,
     },
     {
+      title: "硅基流动",
+      url: "https://siliconflow.cn/",
+      category: "大模型",
+      icon: "",
+      Mark: false,
+    },
+    {
+      title: "OpenRouter",
+      url: "https://openrouter.ai/apps",
+      category: "大模型",
+      icon: "",
+      Mark: false,
+    },
+    {
       title: "Git LFS",
       url: "https://git-lfs.com/",
       category: "工具",
